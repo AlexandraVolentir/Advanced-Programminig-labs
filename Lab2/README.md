@@ -1,4 +1,4 @@
-## Laboratory 1 - Introduction to Java Programming
+## Laboratory 2 - The Room Assignment Problem
 
 ## The tasks can be divided in three categories: compulsory, homework and bonus
 
