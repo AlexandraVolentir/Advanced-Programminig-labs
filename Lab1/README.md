@@ -10,6 +10,7 @@ The result of the output will always be "Java".
 The main of the compulsory is located in the "Compulsory.java" class.
 
 ### Homework
+
 ***
 
 The task was to find the adjacency matrix of a set of words, taking in consideration their "neighbouring" properties.
@@ -28,6 +29,9 @@ For larger instances, I adjusted the JVM Heap Space using the VM options -Xms4G 
 Application, in general, can be launched following the structure *java Compulsory.java*.
 
 ### Bonus
+
+***
+
 Implement an efficient algorithm that determines, if possible, a subset of distinct words W1,W2,...,Wk (from the ones that you have generated) such that k ≥ 3 and Wi and Wi+1 are neighbors, for all i in [1..k], where Wk+1=W1.  Also, we were asked if we could find the largest possible k.
 First, I created a class called graph, and I added all the edges and nodes from the adjacency matrix used at the homework.
 I also added a String array called nodeId, which could be either "visited", either "partially" visited,
