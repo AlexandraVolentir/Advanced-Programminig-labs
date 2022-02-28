@@ -129,9 +129,7 @@ public class HomeworkAndBonus {
             }
             listOfWords[i] = new StringBuilder(word);
         }
-        long endTime   = System.nanoTime();
-        long totalTime = endTime - startTime;
-        System.out.println(totalTime + " nanoseconds");
+
         // print the array of words
         System.out.println("The list of possible characters is: " + listOfChars);
         printStringBuilderArray(listOfWords, n);
@@ -139,6 +137,9 @@ public class HomeworkAndBonus {
         int[][] matrix = getWordAdjacency(listOfWords, n);
         System.out.println("The adjacency matrix is: ");
         printMatrix(matrix);
+        long endTime   = System.nanoTime();
+        long totalTime = endTime - startTime;
+        System.out.println(totalTime + " nanoseconds");
         findLargestCycle(matrix);
     }
 
