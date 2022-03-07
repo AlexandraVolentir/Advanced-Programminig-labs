@@ -1,6 +1,4 @@
-/**
- *
- */
+import java.time.LocalTime;
 
 /**
  * Main class
@@ -19,11 +17,16 @@ public class Main {
         room1.setOperatingSystem("Linux");
         room4.setHasProjector(true);
 
-        Event event1 = new Event("C1", 100,8,10);
-        Event event2 = new Event("C2", 100,10,12);
-        Event event3 = new Event("L1", 30,8,10);
-        Event event4 = new Event("L2", 30,8,10);
-        Event event5 = new Event("L3", 30,10,12);
+        Event event1 = new Event("C1", 100,LocalTime.of(8,0,0),
+                LocalTime.of(10,0,0));//8 10
+        Event event2 = new Event("C2", 100,LocalTime.of(10,0,0),
+                LocalTime.of(12,0,0)); // 10 12
+        Event event3 = new Event("L1", 30,LocalTime.of(8,0,0),
+                LocalTime.of(10,0,0)); // 8 10
+        Event event4 = new Event("L2", 30,LocalTime.of(8,0,0),
+                LocalTime.of(10,0,0)); // 8 10
+        Event event5 = new Event("L3", 30,LocalTime.of(10,0,0),
+                LocalTime.of(12,0,0)); // 10 12
         System.out.println(event1);
         System.out.println(event2);
         System.out.println(event3);

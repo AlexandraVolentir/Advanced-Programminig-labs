@@ -1,4 +1,4 @@
-import java.time.Clock;
+import java.time.LocalTime;
 
 /**
  * Class for creating and managing events
@@ -9,7 +9,7 @@ public class Event {
     private static int indexCounter = 0;
     private String  name;
     private int nrOfParticipants;
-    private int startTime, endTime;
+    private LocalTime startTime, endTime;
 
     /**
      *
@@ -18,7 +18,7 @@ public class Event {
      * @param startTime when the event starts
      * @param endTime when the event ends
      */
-    public Event(String name, int nrOfParticipants, int startTime, int endTime) {
+    public Event(String name, int nrOfParticipants, LocalTime startTime, LocalTime endTime) {
 
         this.name = name;
         this.nrOfParticipants = nrOfParticipants;
@@ -64,24 +64,25 @@ public class Event {
      * @return startTime
      */
     public int getStartTime() {
-        return startTime;
+        return startTime.getHour();
     }
 
     /**
      * setter for startTime
      * @param startTime time when the event Starts
      */
-    public void setStartTime(int startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
     public int getEndTime() {
-        return endTime;
+        return endTime.getHour();
     }
 
-    public void setEndTime(int endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
+
 
     public int getIndex() {
         return index;
