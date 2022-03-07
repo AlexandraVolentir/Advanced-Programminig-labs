@@ -10,7 +10,7 @@ public class Main {
     private static final long MEGABYTE = 1024L * 1024L;
 
     /**
-     * function to convert byt3s to megabytes
+     * function to convert bytes to megabytes
      * @param totalBytes number of bytes
      * @return the result in Megabytes
      */
