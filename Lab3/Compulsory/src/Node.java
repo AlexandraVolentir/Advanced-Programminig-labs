@@ -2,7 +2,7 @@ import javax.xml.stream.Location;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Node implements Comparable<Location>{
+public class Node implements Comparable<Node>{
     private String name;
     private Map<Node, Integer> cost = new HashMap<>();
 
@@ -32,7 +32,7 @@ public class Node implements Comparable<Location>{
     }
 
     @Override
-    public int compareTo(Location other) {
+    public int compareTo(Node other) {
 //        return this.name.compareTo(other.);
         return 0;
     }
