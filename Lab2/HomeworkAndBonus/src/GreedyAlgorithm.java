@@ -25,12 +25,12 @@ public class GreedyAlgorithm extends Algorithm {
     public Solution greedy(){
         Solution sol = new Solution();
         for(var room: pb.getRooms()){
-            int lasHour = 0;
+            int lastHour = -1;
             for(var event: pb.getEvents()){
                 if(room.getCapacity() >= event.getNrOfParticipants()){
-                    if(lasHour <= event.getStartTimeHour() && !sol.getAssignmentMap().containsKey(event)){
+                    if(lastHour <= event.getStartTimeHour() && !sol.getAssignmentMap().containsKey(event)){
                         sol.addPair(event, room);
-                        lasHour = event.getEndTimeHour();
+                        lastHour = event.getEndTimeHour();
                     }
                 }
             }

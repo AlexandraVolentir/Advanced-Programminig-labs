@@ -54,11 +54,29 @@ public class Main {
                 LocalTime.of(10,0,0)); // 8 10
         Event event5 = new Event("L3", 30,LocalTime.of(10,0,0),
                 LocalTime.of(12,0,0)); // 10 12
-        System.out.println(event1);
-        System.out.println(event2);
-        System.out.println(event3);
 
         Problem pb = new Problem();
+
+        for(int i = 0; i < 100; i++){
+            int start = (int) (Math.random() * 18);
+            int end = (int) (Math.random() * 20);
+            int nrOfParticipants = (int) (Math.random() * 100);
+            if(start > end){
+                int temp = start;
+                start = end;
+                end = temp;
+            }
+            StringBuilder name = new StringBuilder("M").append(i);
+            pb.addEvent(new Event(name.toString(), 100,LocalTime.of(start,0,0),
+                    LocalTime.of(end,0,0)));
+        }
+
+
+        for(int i = 500; i < 580; i++){
+            int randomCapacity = (int) (Math.random() * 400);
+            String name = String.valueOf(i);
+            pb.addRoom( new ComputerLab(name.toString(), randomCapacity));
+        }
 
         pb.addRoom(room1);
         pb.addRoom(room2);
@@ -69,6 +87,8 @@ public class Main {
         pb.addEvent(event3);
         pb.addEvent(event4);
         pb.addEvent(event5);
+        pb.showEvents();
+        pb.showRooms();
         
         Algorithm greedy = new GreedyAlgorithm(pb);
         Solution sol = greedy.solve();

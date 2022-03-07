@@ -55,7 +55,7 @@ public class Solution {
             System.out.print(obj.getName() + " ");
             counter++;
         }
-        System.out.print("in number of " + counter + "\n\n");
+        System.out.print("\n\n" + counter + " rooms were used for scheduling " + assignmentMap.size()  + " events\n\n");
     }
 
     /**

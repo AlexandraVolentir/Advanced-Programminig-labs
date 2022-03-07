@@ -58,6 +58,20 @@ public class Problem {
         events.add(newEvent);
     }
 
+    public void showEvents(){
+        for(Event event: events){
+            System.out.println(event);
+        }
+        System.out.println();
+    }
+
+    public void showRooms(){
+        for(Room room: rooms){
+            System.out.println(room);
+        }
+        System.out.println();
+    }
+
     public void removeEvent(int i){
         events.remove(i);
     }
