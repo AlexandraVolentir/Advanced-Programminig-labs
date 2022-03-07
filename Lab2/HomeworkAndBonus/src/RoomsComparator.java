@@ -10,7 +10,7 @@ public class RoomsComparator implements Comparator<Room> {
      * compares two rooms based on their capacity
      * @param o1 first Room object
      * @param o2 second Room object
-     * @return
+     * @return returns the result of the comparison
      */
     @Override
     public int compare(Room o1, Room o2) {

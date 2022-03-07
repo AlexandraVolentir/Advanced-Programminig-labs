@@ -14,9 +14,9 @@ public abstract class Algorithm {
     }
 
     /**
-     * abstract method. It will be overriden by
-     * the classes which extend the Algoritm class.
-     * @return
+     * abstract method. It will be override by
+     * the classes which extend the Algorithm class.
+     * @return the solution of the algorithm
      */
     public abstract Solution solve();
 }
