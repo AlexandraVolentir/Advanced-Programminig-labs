@@ -28,9 +28,9 @@ public class GreedyAlgorithm extends Algorithm {
             int lasHour = 0;
             for(var event: pb.getEvents()){
                 if(room.getCapacity() >= event.getNrOfParticipants()){
-                    if(lasHour <= event.getStartTime() && !sol.getAssignmentMap().containsKey(event)){
+                    if(lasHour <= event.getStartTimeHour() && !sol.getAssignmentMap().containsKey(event)){
                         sol.addPair(event, room);
-                        lasHour = event.getEndTime();
+                        lasHour = event.getEndTimeHour();
                     }
                 }
             }

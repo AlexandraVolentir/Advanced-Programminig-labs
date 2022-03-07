@@ -63,26 +63,30 @@ public class Event {
      * getter for startTime
      * @return startTime
      */
-    public int getStartTime() {
+
+    public int getStartTimeHour() {
         return startTime.getHour();
     }
 
-    /**
-     * setter for startTime
-     * @param startTime time when the event Starts
-     */
+    public int getEndTimeHour() {
+        return endTime.getHour();
+    }
+
     public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public int getEndTime() {
-        return endTime.getHour();
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
     }
 
     public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
-
 
     public int getIndex() {
         return index;

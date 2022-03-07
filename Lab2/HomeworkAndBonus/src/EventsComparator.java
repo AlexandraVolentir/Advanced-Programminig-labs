@@ -15,6 +15,6 @@ public class EventsComparator implements Comparator<Event> {
      */
     @Override
     public int compare(Event o1, Event o2) {
-        return Integer.compare(o1.getStartTime(), o2.getStartTime());
+        return Integer.compare(o1.getStartTimeHour(), o2.getStartTimeHour());
     }
 }
