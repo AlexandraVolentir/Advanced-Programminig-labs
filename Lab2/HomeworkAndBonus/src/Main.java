@@ -87,13 +87,22 @@ public class Main {
         pb.addEvent(event3);
         pb.addEvent(event4);
         pb.addEvent(event5);
-        pb.showEvents();
-        pb.showRooms();
-        
+//        pb.showEvents();
+//        pb.showRooms();
+
+        // greedy
         Algorithm greedy = new GreedyAlgorithm(pb);
         Solution sol = greedy.solve();
         sol.computeUsedRooms();
         showMemoryConsumption();
+
+//
+//        // dsatur
+//        Algorithm dsatur = new DSatur(pb);
+//        Solution sol1 = dsatur.solve();
+//        sol1.computeUsedRooms();
+//        showMemoryConsumption();
+
         long stopTime = System.currentTimeMillis();
         long elapsedTime = stopTime - startTime;
         System.out.println("Runtime: " + elapsedTime + " milliseconds");
