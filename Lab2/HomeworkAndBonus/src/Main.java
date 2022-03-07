@@ -96,7 +96,7 @@ public class Main {
         sol.computeUsedRooms();
         showMemoryConsumption();
 
-//
+
 //        // dsatur
 //        Algorithm dsatur = new DSatur(pb);
 //        Solution sol1 = dsatur.solve();

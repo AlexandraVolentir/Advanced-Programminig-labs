@@ -58,6 +58,10 @@ public class Solution {
         System.out.print("\n\n" + counter + " rooms were used for scheduling " + assignmentMap.size()  + " events\n\n");
     }
 
+    public void addToSetOfRooms(Room room){
+        setOfRooms.add(room);
+    }
+
     /**
      * setter fo set of rooms
      * @return setOfRooms
