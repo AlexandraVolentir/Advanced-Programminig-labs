@@ -1,11 +1,12 @@
-public class Switch  implements Identifiable, Storage{
-    @Override
-    public String getAddress() {
-        return null;
+import java.util.Map;
+
+public class Switch extends Node{
+
+    public Switch(String name) {
+        super(name);
     }
 
-    @Override
-    public int getStorageCapacity() {
-        return 0;
+    public Switch(String name, Map<Node, Integer> cost) {
+        super(name, cost);
     }
 }
