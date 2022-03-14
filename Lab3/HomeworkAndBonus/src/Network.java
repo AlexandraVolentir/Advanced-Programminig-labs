@@ -11,6 +11,10 @@ public class Network {
         listOfNodes = new ArrayList<>(nodes);
     }
 
+    public Network(Network n1) {
+        listOfNodes = n1.listOfNodes;
+    }
+
     public ArrayList<Node> getListOfNodes() {
         return listOfNodes;
     }
@@ -26,6 +30,10 @@ public class Network {
 
     public void addNode(Node node){
         listOfNodes.add(node);
+    }
+
+    public void removeNode(Node node){
+        listOfNodes.remove(node);
     }
 
     @Override
@@ -44,6 +52,8 @@ public class Network {
         for(var obj : listOfNodes){
             if(obj instanceof Identifiable){
                 temp.add(obj);
+//                obj.setId(Node.getIdCounter());
+//                Node.increseIdCounter();
             }
         }
         Collections.sort(temp);

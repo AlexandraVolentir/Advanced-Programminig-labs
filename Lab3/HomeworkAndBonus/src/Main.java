@@ -1,15 +1,4 @@
-import java.util.*;
-
 public class Main {
-    public boolean checkIfNodesConnected(Network n  ,int i, int j){
-//        ArrayList<Node> list = n.getListOfNodes();
-//        for (Map.Entry<String, Object> entry : list.entrySet()) {
-//            String key = entry.getKey();
-//            Object value = entry.getValue();
-//            // ...
-//        }
-        return true;
-    }
     /**
      * Here is the main code
      * @param args given parameters
@@ -51,20 +40,37 @@ public class Main {
 
         System.out.println("The sorted list of identifiable nodes is: ");
         n1.displayIdentifiable();
-
+        System.out.println();
         /* Let us create the example graph discussed above */
-        int len = n1.getListOfNodes().size();
-        ArrayList[] graph = new ArrayList[len];
+        int len = n1.getListOfNodes().size() ;
+//        System.out.println("len = " + len);
+//        ArrayList[] graph = new ArrayList[len];
+//
+//        for (int i = 0; i < len; i++) {
+//            graph[i] = new ArrayList<Integer>();
+//        }
 
-        for (int i = 0; i < len; i++) {
-            graph[i] = new ArrayList<Integer>();
+
+       Network tempNetwork = new Network(n1.sortByAddressesIdentifiable(n1.getListOfNodes()));
+
+        for(var obj : tempNetwork.getListOfNodes()){
+            System.out.println(obj);
+        }
+        System.out.println();
+//        Problem t = new Problem(tempNetwork,tempNetwork.getListOfNodes().size());
+//
+//        t.dijkstra(2,3);
+
+        Problem t = new Problem(n1, n1.getListOfNodes().size());
+        int idNode1 = 0;
+        int idNode2 = 4;
+        int flag = 0;
+        for(var obj : n1.sortByAddressesIdentifiable(n1.getListOfNodes())){
+            if (obj.getId() == idNode1 || obj.getId() == idNode2) flag++;
+        }
+        if(flag == 2){
+            t.performDijkstra(0,4);
         }
 
-        int graph2[][] = new int[len][len];
-        for(int i = 0; i < len; i++){
-            for(int j = 0; j < len; j++){
-
-            }
-        }
     }
 }

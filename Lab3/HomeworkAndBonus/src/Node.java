@@ -7,6 +7,8 @@ public class Node implements Comparable<Node>{
     private String name;
     private String location;
     private Map<Node, Integer> cost;
+    private static int idCounter = 0;
+    private int id;
 
     private String type;
     private static Set<String> setOfLocations = new HashSet<>();
@@ -15,11 +17,23 @@ public class Node implements Comparable<Node>{
     public Node(String name, String location) {
         setName(name);
         cost = new HashMap<>();
+        id= idCounter++;
     }
 
     public Node(String name, String location ,Map<Node, Integer> cost) {
         setName(name);
         this.cost = new HashMap<>(cost);
+        id = idCounter++;
+    }
+
+
+    public static void increseIdCounter() {
+        idCounter++;
+    }
+
+
+    public static int getIdCounter() {
+        return idCounter;
     }
 
     public String getName() {
@@ -58,6 +72,18 @@ public class Node implements Comparable<Node>{
         cost.put(node, value);
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setType(String type) {
         this.type = type;
     }
@@ -84,7 +110,5 @@ public class Node implements Comparable<Node>{
         return returnVal;
     }
 
-    public String getType() {
-        return type;
-    }
+
 }
