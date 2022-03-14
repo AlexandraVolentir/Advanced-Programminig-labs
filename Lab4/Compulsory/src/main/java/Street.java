@@ -1,7 +1,5 @@
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Street {
 
@@ -48,6 +46,8 @@ public class Street {
 
     public void sorting(){
         Collections.sort(nodeList, ((u,v) -> u.getName().compareTo(v.getName())));;
+//        List<Intersection> newSortedList = nodeList.stream() .sorted(Comparator.comparing(Intersection::getName)) .collect(Collectors.toList());
     }
+
 
 }
