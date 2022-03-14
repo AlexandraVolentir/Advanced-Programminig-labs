@@ -1,4 +1,3 @@
-import javax.xml.stream.Location;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -6,26 +5,21 @@ import java.util.Set;
 
 public class Node implements Comparable<Node>{
     private String name;
+    private String location;
     private Map<Node, Integer> cost;
 
     private String type;
-    private static Set<String> setOfNodeNames = new HashSet<>();
+    private static Set<String> setOfLocations = new HashSet<>();
     static int counter = 0;
 
-    public Node(String name) {
+    public Node(String name, String location) {
+        setName(name);
         cost = new HashMap<>();
     }
 
-    public Node(String name, Map<Node, Integer> cost) {
+    public Node(String name, String location ,Map<Node, Integer> cost) {
+        setName(name);
         this.cost = new HashMap<>(cost);
-    }
-
-    public static Set<String> getSetOfNodeNames() {
-        return setOfNodeNames;
-    }
-
-    public static void setSetOfNodeNames(Set<String> setOfNodeNames) {
-        Node.setOfNodeNames = setOfNodeNames;
     }
 
     public String getName() {
@@ -33,7 +27,23 @@ public class Node implements Comparable<Node>{
     }
 
     public void setName(String name) {
-        checkAndSetName(name);
+        this.name = name;
+    }
+
+    public static Set<String> getSetOfLocations() {
+        return setOfLocations;
+    }
+
+    public static void setSetOfLocations(Set<String> setOfLocations) {
+        Node.setOfLocations = setOfLocations;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        checkAndSetLocation(location);
     }
 
     public Map<Node, Integer> getCost() {
@@ -52,24 +62,25 @@ public class Node implements Comparable<Node>{
         this.type = type;
     }
 
-    public void checkAndSetName(String name){
-        this.name = type + " " + name;
-        if(setOfNodeNames.contains(name)){
-            this.name = "default" + ++counter;
+    public void checkAndSetLocation(String location){
+        this.location = type + " " + location;
+        if(setOfLocations.contains(location)){
+            this.location = "default" + ++counter;
         }
-        setOfNodeNames.add(this.name);
+        setOfLocations.add(this.location);
     }
 
     @Override
     public int compareTo(Node other) {
-        if(this.name != null) return this.name.compareTo(other.name);
+        if(this.location != null) return this.location.compareTo(other.location);
         return -1;
     }
 
     @Override
     public String toString() {
         String returnVal = "Node[" +
-                "name='" + name + '\'' + ']';
+                "name='" + name + '\'' +
+                ']';
         return returnVal;
     }
 

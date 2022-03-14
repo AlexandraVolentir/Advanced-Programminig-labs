@@ -5,16 +5,16 @@ public class Router  extends Node implements Identifiable
 
     private String address;
 
-    public Router(String name) {
-        super(name);
+    public Router(String name, String location) {
+        super(name, location);
         setType("Router");
-        checkAndSetName(name);
+        checkAndSetLocation(location);
     }
 
-    public Router(String name, Map<Node, Integer> cost) {
-        super(name, cost);
+    public Router(String name, String location,Map<Node, Integer> cost) {
+        super(name, location, cost);
         setType("Router");
-        checkAndSetName(name);
+        checkAndSetLocation(location);
     }
 
     @Override

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class Network {
@@ -32,6 +31,7 @@ public class Network {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
+        str.append("\nThe costs of the graph are:\n");
         for(var obj: listOfNodes){
             str.append(obj.getName()).append(obj.getCost()).append("\n");
         }
@@ -51,7 +51,9 @@ public class Network {
     }
 
     public void displayIdentifiable(){
-        System.out.println(sortByAddressesIdentifiable(listOfNodes));
-        System.out.println(sortByAddressesIdentifiable(listOfNodes));
+        ArrayList<Node> temp = sortByAddressesIdentifiable(listOfNodes);
+        for(var obj : temp){
+            System.out.println(obj.getName() +  " (" + obj.getLocation() + ")");
+        }
     }
 }

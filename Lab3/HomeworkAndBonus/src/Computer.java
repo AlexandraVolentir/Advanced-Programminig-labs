@@ -3,15 +3,15 @@ import java.util.Map;
 public class Computer extends Node implements Identifiable, Storage{
     private String address;
     private int storageCapacity;
-    public Computer(String name) {
-        super(name);
+    public Computer(String name, String location) {
+        super(name, location);
         setType("Computer");
-        checkAndSetName(name);
+        checkAndSetLocation(location);
     }
-    public Computer(String name, Map<Node, Integer> cost) {
-        super(name, cost);
+    public Computer(String name, String location, Map<Node, Integer> cost) {
+        super(name, location, cost);
         setType("Computer");
-        checkAndSetName(name);
+        checkAndSetLocation(location);
     }
 
     public void setStorageCapacity(int storage){
@@ -20,7 +20,7 @@ public class Computer extends Node implements Identifiable, Storage{
 
     @Override
     public int getStorageCapacity() {
-        return 0;
+        return storageCapacity;
     }
 
     @Override

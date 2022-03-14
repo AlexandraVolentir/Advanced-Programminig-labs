@@ -15,14 +15,19 @@ public class Main {
      * @param args given parameters
      */
     public static void main(String[] args) {
-        Computer v1 = new Computer("A");
-        Router v2 = new Router("A");
-        Switch v3 = new Switch("A");
-        Switch v4 = new Switch("B");
-        Router v5 = new Router("B");
-        Computer v6 = new Computer("B");
+        Computer v1 = new Computer("v1","A");
+        Router v2 = new Router("v2","A");
+        Switch v3 = new Switch("v3","A");
+        Switch v4 = new Switch("v4","B");
+        Router v5 = new Router("v5","B");
+        Computer v6 = new Computer("v6","B");
 
         v1.setStorageCapacity(23);
+        System.out.println("\nThe storage capacity of v1 is: " + v1.getStorageCapacity() + " GB");
+        System.out.println("The storage capacity of v1 is: " + v1.translate(v1.getStorageCapacity(), StorageUnits.MEGABYTE) + " MB");
+        System.out.println("The storage capacity of v1 is: " + v1.translate(v1.getStorageCapacity(), StorageUnits.KILOBYTE) + " KB");
+        System.out.println("The storage capacity of v1 is: " + v1.translate(v1.getStorageCapacity(), StorageUnits.BYTE) + " bytes");
+
 
         Network n1 = new Network();
         n1.addNode(v1);
@@ -42,9 +47,9 @@ public class Main {
         n1.setCost(v4,v6,10);
         n1.setCost(v5,v6,20);
 
-        System.out.println(v1.getCost());
         System.out.println(n1);
 
+        System.out.println("The sorted list of identifiable nodes is: ");
         n1.displayIdentifiable();
 
         /* Let us create the example graph discussed above */
@@ -61,9 +66,5 @@ public class Main {
 
             }
         }
-
-
-
-
     }
 }
