@@ -1,12 +1,10 @@
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Node implements Comparable<Node>{
     private String name;
     private String location;
     private Map<Node, Integer> cost;
+    private Map<Node, Integer> failureProbability;
     private static int idCounter = 0;
     private int id;
 
@@ -26,11 +24,21 @@ public class Node implements Comparable<Node>{
         id = idCounter++;
     }
 
+    public Map<Node, Integer> getFailureProbability() {
+        return failureProbability;
+    }
+
+    public void setFailureProbability(Map<Node, Integer> failureProbability) {
+        this.failureProbability = failureProbability;
+    }
+
+    public void setFailureProbability(Node key, int i) {
+        failureProbability.put(key, i);
+    }
 
     public static void increseIdCounter() {
         idCounter++;
     }
-
 
     public static int getIdCounter() {
         return idCounter;
@@ -109,6 +117,4 @@ public class Node implements Comparable<Node>{
                 ']';
         return returnVal;
     }
-
-
 }

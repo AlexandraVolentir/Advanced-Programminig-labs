@@ -9,12 +9,23 @@ class Problem {
     private int[][] adjacencyMatrix;
     private int source, destination, solution;
     private int solArr[];
+    private ArrayList<Node> array;
     private final int MAX = 1000;
     private Network n1;
     public Problem(Network n1, int length) {
         numberOfVertices = length;
         this.n1 = n1;
         generateAdjacencyList(n1,length);
+    }
+
+    public void calculateProbabilityOfFailure(){
+        for(Node obj : array){
+            for (Map.Entry<Node, Integer> entry : obj.getFailureProbability().entrySet()) {
+                Node key = entry.getKey();
+                Integer value = entry.getValue();
+                obj.setFailureProbability(key, value/100);
+            }
+        }
     }
 
     public void generateAdjacencyList(Network n1, int len){
@@ -24,7 +35,7 @@ class Problem {
                 adjacencyMatrix[i][j] = 0;
             }
         }
-
+        array = n1.getListOfNodes();
         for(var obj : n1.getListOfNodes()){
             for (Map.Entry<Node, Integer> entry : obj.getCost().entrySet()) {
                 if(obj.getId() == Node.getIdCounter() -1) break;
@@ -78,6 +89,20 @@ class Problem {
     }
 
     void performDijkstra(int sourceV, int destination) {
+        this.source = sourceV;
+        this.destination = destination;
+        Boolean[] shortestPathTree = new Boolean[numberOfVertices];
+        int[] distance = new int[numberOfVertices];
+        for (int i = 0; i < numberOfVertices; i++) {
+            distance[i] = MAX;
+            shortestPathTree[i] = false;
+        }
+        distance = findShortestPath(distance,sourceV,shortestPathTree);
+        getSolution(distance);
+    }
+
+    void performSafestDijkstra(int sourceV, int destination) {
+        calculateProbabilityOfFailure();
         this.source = sourceV;
         this.destination = destination;
         Boolean[] shortestPathTree = new Boolean[numberOfVertices];
