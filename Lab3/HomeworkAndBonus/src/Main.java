@@ -37,29 +37,16 @@ public class Main {
         n1.setCost(v5,v6,20);
 
         System.out.println(n1);
-
         System.out.println("The sorted list of identifiable nodes is: ");
         n1.displayIdentifiable();
         System.out.println();
-        /* Let us create the example graph discussed above */
+
         int len = n1.getListOfNodes().size() ;
-//        System.out.println("len = " + len);
-//        ArrayList[] graph = new ArrayList[len];
-//
-//        for (int i = 0; i < len; i++) {
-//            graph[i] = new ArrayList<Integer>();
-//        }
-
-
-       Network tempNetwork = new Network(n1.sortByAddressesIdentifiable(n1.getListOfNodes()));
-
+        Network tempNetwork = new Network(n1.sortByAddressesIdentifiable(n1.getListOfNodes()));
         for(var obj : tempNetwork.getListOfNodes()){
             System.out.println(obj);
         }
         System.out.println();
-//        Problem t = new Problem(tempNetwork,tempNetwork.getListOfNodes().size());
-//
-//        t.dijkstra(2,3);
 
         Problem prob1 = new Problem(n1, n1.getListOfNodes().size());
         int idNode1 = 0;
@@ -72,8 +59,8 @@ public class Main {
             prob1.performDijkstra(0,4);
         }
         System.out.println();
+
         Problem p2 = new Problem(n1, n1.getListOfNodes().size());
         p2.performSafestDijkstra(3,5);
-
     }
 }

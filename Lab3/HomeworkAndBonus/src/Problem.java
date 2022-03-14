@@ -39,7 +39,7 @@ class Problem {
         for(int i = 0; i < len; i++){
             for(int j = 0; j < len; j++){
                 failureProbabilityMatrix[i][j] = (double)adjacencyMatrix[i][j]/100;
-                logarithmicFailureProbability[i][j] = (double) customLog(2, 1 - failureProbabilityMatrix[i][j]);
+                logarithmicFailureProbability[i][j] =  -(double) customLog(2, 1 - failureProbabilityMatrix[i][j]);
             }
         }
     }
@@ -55,7 +55,7 @@ class Problem {
         return minimalIndeces;
     }
 
-    int getMinDist(int[] deistance, Boolean[] sptSet)
+    public int getMinDist(int[] deistance, Boolean[] sptSet)
     {
         int minimum = MAX, minimalIndeces = -1;
         for (int adj = 0; adj < numberOfVertices; adj++)
@@ -81,7 +81,7 @@ class Problem {
         return solution;
     }
 
-    public double getSafestSolution(int[] distance)
+    public double getSafestSolution(double[] distance)
     {
         System.out.println("V ====>  Safest path");
         for (int i = 0; i < numberOfVertices; i++)
@@ -89,11 +89,11 @@ class Problem {
             if(i >= source && i <= destination)
                 System.out.println(i + " \t\t " + distance[i]);
             if(i == destination){
-                solution = distance[i];
+                solution2 = distance[i];
                 break;
             }
         }
-        return solution;
+        return solution2;
     }
 
     public int[] findShortestPath(int[] distance, int sourceV, Boolean[] shortestPathTree){
@@ -134,9 +134,9 @@ class Problem {
                         distance[vertice] != MAX &&
                         distance[vertice] + logarithmicFailureProbability[vertice][adj] < distance[adj])
 
-                    distance[adj] = distance[vertice] + logarithmicFailureProbability[vertice][adj];
+                    distance[adj] = (distance[vertice] + logarithmicFailureProbability[vertice][adj]);
         }
-        return distance;
+        return  distance;
     }
 
     void performSafestDijkstra(int sourceV, int destination) {
@@ -144,12 +144,12 @@ class Problem {
         this.source = sourceV;
         this.destination = destination;
         Boolean[] shortestPathTree = new Boolean[numberOfVertices];
-        int[] distance = new int[numberOfVertices];
+        double[] distance = new double[numberOfVertices];
         for (int i = 0; i < numberOfVertices; i++) {
             distance[i] = MAX;
             shortestPathTree[i] = false;
         }
-        distance = findShortestPath(distance,sourceV,shortestPathTree);
+        distance = findSafestPath(distance,sourceV,shortestPathTree);
         getSafestSolution(distance);
     }
 
@@ -158,6 +158,7 @@ class Problem {
     private double[][] failureProbabilityMatrix;
     private double[][] logarithmicFailureProbability;
     private int source, destination, solution;
+    private double solution2;
     private int solArr[];
     private ArrayList<Node> array;
     private final int MAX = 1000;
