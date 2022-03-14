@@ -61,7 +61,7 @@ public class Main {
 //
 //        t.dijkstra(2,3);
 
-        Problem t = new Problem(n1, n1.getListOfNodes().size());
+        Problem prob1 = new Problem(n1, n1.getListOfNodes().size());
         int idNode1 = 0;
         int idNode2 = 4;
         int flag = 0;
@@ -69,8 +69,11 @@ public class Main {
             if (obj.getId() == idNode1 || obj.getId() == idNode2) flag++;
         }
         if(flag == 2){
-            t.performDijkstra(0,4);
+            prob1.performDijkstra(0,4);
         }
+        System.out.println();
+        Problem p2 = new Problem(n1, n1.getListOfNodes().size());
+        p2.performSafestDijkstra(3,5);
 
     }
 }

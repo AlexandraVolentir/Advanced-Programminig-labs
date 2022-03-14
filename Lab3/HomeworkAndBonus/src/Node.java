@@ -4,7 +4,8 @@ public class Node implements Comparable<Node>{
     private String name;
     private String location;
     private Map<Node, Integer> cost;
-    private Map<Node, Integer> failureProbability;
+    private Map<Node, Double> failureProbability;
+    private Map<Node, Double> logarithmicProbability;
     private static int idCounter = 0;
     private int id;
 
@@ -24,15 +25,28 @@ public class Node implements Comparable<Node>{
         id = idCounter++;
     }
 
-    public Map<Node, Integer> getFailureProbability() {
+    public Map<Node, Double> getLogarithmicProbability() {
+        return logarithmicProbability;
+    }
+
+    public void setLogarithmicProbability(Map<Node, Double> logarithmicProbab) {
+        this.logarithmicProbability = logarithmicProbab;
+    }
+
+    public void setLogarithmicProbability(Node n, double value) {
+        this.logarithmicProbability.put(n,value);
+    }
+
+
+    public Map<Node, Double> getFailureProbability() {
         return failureProbability;
     }
 
-    public void setFailureProbability(Map<Node, Integer> failureProbability) {
+    public void setFailureProbability(Map<Node, Double> failureProbability) {
         this.failureProbability = failureProbability;
     }
 
-    public void setFailureProbability(Node key, int i) {
+    public void setFailureProbability(Node key, double i) {
         failureProbability.put(key, i);
     }
 
