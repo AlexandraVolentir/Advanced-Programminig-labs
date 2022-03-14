@@ -48,6 +48,8 @@ public class Main {
         }
         System.out.println();
 
+        // now we will solve this instance and find the shortest and safest paths
+
         Problem prob1 = new Problem(n1, n1.getListOfNodes().size());
         int idNode1 = 0;
         int idNode2 = 4;

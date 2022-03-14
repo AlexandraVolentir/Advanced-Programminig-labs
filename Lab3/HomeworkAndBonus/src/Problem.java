@@ -3,18 +3,30 @@
 import java.util.*;
 import java.lang.*;
 
+/**
+ * Problem class that solves Djikstra
+ */
 class Problem {
 
+    /**
+     * constructor for the djikstra problem class
+     */
     public Problem(Network n1, int length) {
         numberOfVertices = length;
         this.n1 = n1;
         generateAdjacencyList(n1,length);
     }
 
+    /**
+     * utility function for calculating logarithms
+     */
     private double customLog(double base, double logNumber) {
         return Math.log(logNumber) / Math.log(base);
     }
 
+    /**
+     * generate an adjacency matrix
+     */
     public void generateAdjacencyList(Network n1, int len){
         adjacencyMatrix = new int[len][len];
         failureProbabilityMatrix = new double[len][len];
@@ -55,17 +67,26 @@ class Problem {
         return minimalIndeces;
     }
 
-    public int getMinDist(int[] deistance, Boolean[] sptSet)
+    /**
+     * finding the vertex with minimum distance
+     * @param distance distances
+     * @param shortestPathTreeSet a set of shortest path trees
+     * @return the minimal index
+     */
+    public int getMinDist(int[] distance, Boolean[] shortestPathTreeSet)
     {
         int minimum = MAX, minimalIndeces = -1;
         for (int adj = 0; adj < numberOfVertices; adj++)
-            if (!sptSet[adj] && deistance[adj] <= minimum) {
-                minimum = deistance[adj];
+            if (!shortestPathTreeSet[adj] && distance[adj] <= minimum) {
+                minimum = distance[adj];
                 minimalIndeces = adj;
             }
         return minimalIndeces;
     }
 
+    /**
+     * returns the shortest path solution
+     */
     public int getSolution(int[] distance)
     {
         System.out.println("V ====>  Shortest path");
@@ -81,6 +102,9 @@ class Problem {
         return solution;
     }
 
+    /**
+     * iterate and output the safest solution
+     */
     public double getSafestSolution(double[] distance)
     {
         System.out.println("V ====>  Safest path");
@@ -96,6 +120,11 @@ class Problem {
         return solution2;
     }
 
+    /**
+     * find the shortest path for all vertices using djikstra
+     * firt we will choose the minimum distance node from the set of nodes
+     * adj will always have the value of src in first iteration
+     */
     public int[] findShortestPath(int[] distance, int sourceV, Boolean[] shortestPathTree){
         distance[sourceV] = 0;
         for (int calculate = 0; calculate < numberOfVertices - 1; calculate++) {
@@ -110,6 +139,9 @@ class Problem {
         return distance;
     }
 
+    /**
+     * initialize the arrays and call the simple djikstra
+     */
     void performDijkstra(int sourceV, int destination) {
         this.source = sourceV;
         this.destination = destination;
@@ -123,6 +155,9 @@ class Problem {
         getSolution(distance);
     }
 
+    /**
+     * use djikstra with logarithmicFailureProbability in order to find the safest path
+     */
     public double[] findSafestPath(double[] distance, int sourceV, Boolean[] shortestPathTree){
         distance[sourceV] = 0;
         for (int calculate = 0; calculate < numberOfVertices - 1; calculate++) {
@@ -139,6 +174,9 @@ class Problem {
         return  distance;
     }
 
+    /**
+     * function designed to initialize parameters for the function findSafestDjikstra
+     */
     void performSafestDijkstra(int sourceV, int destination) {
 
         this.source = sourceV;

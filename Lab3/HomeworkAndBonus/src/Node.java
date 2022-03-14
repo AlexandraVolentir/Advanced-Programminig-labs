@@ -1,5 +1,8 @@
 import java.util.*;
 
+/**
+ * parent class for Computer, Switch and Router
+ */
 public class Node implements Comparable<Node>{
     private String name;
     private String location;
@@ -13,22 +16,34 @@ public class Node implements Comparable<Node>{
     private static Set<String> setOfLocations = new HashSet<>();
     static int counter = 0;
 
+    /**
+     * constructor for the node class that takes the name and location as parameters
+     */
     public Node(String name, String location) {
         setName(name);
         cost = new HashMap<>();
         id= idCounter++;
     }
 
+    /**
+     * extended constructor for node class
+     */
     public Node(String name, String location ,Map<Node, Integer> cost) {
         setName(name);
         this.cost = new HashMap<>(cost);
         id = idCounter++;
     }
 
+    /**
+     * getter for logarithmicProbability
+     */
     public Map<Node, Double> getLogarithmicProbability() {
         return logarithmicProbability;
     }
 
+    /**
+     * setter for logarithmicProbability
+     */
     public void setLogarithmicProbability(Map<Node, Double> logarithmicProbab) {
         this.logarithmicProbability = logarithmicProbab;
     }
@@ -110,6 +125,9 @@ public class Node implements Comparable<Node>{
         this.type = type;
     }
 
+    /**
+     * the location is unique
+     */
     public void checkAndSetLocation(String location){
         this.location = type + " " + location;
         if(setOfLocations.contains(location)){

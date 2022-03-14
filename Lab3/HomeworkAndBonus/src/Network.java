@@ -1,12 +1,22 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * class that manipulates its set of nodes
+ */
 public class Network {
     private ArrayList<Node> listOfNodes;
+
+    /**
+     * simple constructor
+     */
     public Network(){
         listOfNodes = new ArrayList<>();
     }
 
+    /**
+     * constructor that taakes as parameter a list of nodes
+     */
     public Network(ArrayList<Node> nodes){
         listOfNodes = new ArrayList<>(nodes);
     }
@@ -46,6 +56,9 @@ public class Network {
         return str.toString();
     }
 
+    /**
+     * sorts the identifiable nodes by their addresses
+     */
     public ArrayList<Node> sortByAddressesIdentifiable(ArrayList<Node> list){
 
         ArrayList<Node> temp = new ArrayList<>();
