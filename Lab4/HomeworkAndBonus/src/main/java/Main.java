@@ -89,34 +89,14 @@ public class Main {
         setOfIntersections.add(nodesList.get(0));
         setOfIntersections.forEach(System.out::println);
 
-
-
         // Filtering
         System.out.println("\nFiltered streets: ");
-
-
-//        List<Street> filteredList = listStreets.stream()
-//                .filter(i -> i.getLength()>2)
-//                .filter(i -> i.findNumberOfJoinedStreets(i, listStreets) >= 3)
-//                .collect(Collectors.toList());
-//        System.out.println();
-
         listStreets.stream()
                 .filter(v -> ((cityMap.getCityMap()).get(v.getNodeList().get(0)).size() + (cityMap.getCityMap()).get(v.getNodeList().get(1)).size() >= 3))
                 .filter(i -> i.getLength()>2)
                 .forEach(System.out::println);
 
-//        List<Street> filteredList2 = listStreets.stream()
-//                .peek(i -> i.findNumberOfJoinedStreets(i, listStreets))
-//                .collect(Collectors.toList());
-//        filteredList2.forEach(System.out::println);
-//        System.out.println();
-
-
         Prim prim = new Prim();
         System.out.println(prim.performPrims(listStreets, nodesList).getSpanningTree());
-
-
-
     }
 }
