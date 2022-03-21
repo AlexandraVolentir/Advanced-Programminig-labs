@@ -4,11 +4,25 @@ import org.jgrapht.graph.DefaultWeightedEdge;
 
 import java.util.ArrayList;
 
+/**
+ * finds the mst of a graph using prim and jgrapht library
+ */
 public class Prim {
     DefaultDirectedGraph<String, DefaultWeightedEdge> graph;
+
+    /**
+     * default constructor for prims
+     */
     Prim(){
         graph = new DefaultDirectedGraph<>(DefaultWeightedEdge.class);
     }
+
+    /**
+     *
+     * @param listStreets list of Streets
+     * @param nodesList list of nodes
+     * @return the minimum spanning tree
+     */
     PrimMinimumSpanningTree<String, DefaultWeightedEdge>
     performPrims(ArrayList<Street> listStreets, ArrayList<Intersection> nodesList){
         for(Intersection intersection : nodesList){
@@ -20,6 +34,4 @@ public class Prim {
         }
         return new PrimMinimumSpanningTree<String, DefaultWeightedEdge>(graph);
     }
-
-
 }

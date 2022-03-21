@@ -118,26 +118,6 @@ public class Street {
         return Integer.compare(length1, length2);
     }
 
-    public int findNumberOfJoinedStreets(Street street, ArrayList<Street> arrayOfStreets){
-        int counter = 0;
-        for(Street streetElement : arrayOfStreets){
-            if(!(streetElement == street)
-                    || street.getNodeList().get(0).equals(streetElement.getNodeList().get(0))
-                    || street.getNodeList().get(0).equals(streetElement.getNodeList().get(1))
-                    || street.getNodeList().get(1).equals(streetElement.getNodeList().get(0))
-                    || street.getNodeList().get(1).equals(streetElement.getNodeList().get(1)))
-            {
-                counter++;
-            }
-        }
-        for(Intersection intersection : street.getNodeList()){
-            counter += intersection.getStreets().size();
-        }
-        System.out.println(street + " ");
-        System.out.print(counter);
-        return counter;
-    }
-
     /**
      * concatenates all the data members of the class
      * in order for them to be represented as an entity

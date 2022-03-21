@@ -17,6 +17,10 @@ public class CityMap {
         streetList = new ArrayList<>();
     }
 
+    /**
+     * constructor for the city Map
+     * @param cityMap the city map
+     */
     public CityMap(Map<Intersection, ArrayList<Street>> cityMap) {
         this.cityMap = new HashMap<>(cityMap);
         streetList = new ArrayList<>();

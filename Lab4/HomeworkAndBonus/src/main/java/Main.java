@@ -1,10 +1,16 @@
 import com.github.javafaker.Faker;
-import org.jgrapht.alg.spanning.PrimMinimumSpanningTree;
-import org.jgrapht.graph.DefaultDirectedGraph;
+import org.jgrapht.EdgeFactory;
+import org.jgrapht.Graph;
+import org.jgrapht.VertexFactory;
+import org.jgrapht.generate.CompleteGraphGenerator;
+import org.jgrapht.generate.GnpRandomBipartiteGraphGenerator;
+import org.jgrapht.generate.GnpRandomGraphGenerator;
+import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.DefaultWeightedEdge;
+import org.jgrapht.graph.ListenableUndirectedGraph;
+import org.jgrapht.graph.SimpleWeightedGraph;
 
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -14,6 +20,24 @@ public class Main {
     /**
      * here is where the main code will be executed
      */
+    void randomInstanceGenerator(ArrayList<Intersection> nodesList){
+
+        CompleteGraphGenerator<String, DefaultEdge> completeGenerator
+                = new CompleteGraphGenerator<>(nodesList.size());
+        VertexFactory<String> vFactory = new VertexFactory<String>() {
+            private int id = 0;
+            public String createVertex() {
+                return nodesList.get(id++).getName();
+            }
+        };
+        var completeGraph = new SimpleWeightedGraph<String, String>((EdgeFactory<String, String>) vFactory);
+        Map<String, String> map = new HashMap<>();
+        Random rand = new Random();
+        Graph<String, DefaultWeightedEdge>  newGraph = new ListenableUndirectedGraph<String, DefaultWeightedEdge>(DefaultWeightedEdge.class);
+        GnpRandomGraphGenerator<String, DefaultWeightedEdge> graphGenerator = new GnpRandomGraphGenerator<>(10, 0.5, rand,false);
+        graphGenerator.generateGraph(newGraph, vFactory, map);
+    }
+
     public static void main(String[] args) {
         //The simple way
         // COMPULSORY
@@ -98,5 +122,13 @@ public class Main {
 
         Prim prim = new Prim();
         System.out.println(prim.performPrims(listStreets, nodesList).getSpanningTree());
+
+        System.out.println();
+
+        // BONUS
+        System.out.println("metricTSP");
+        MetricTravellingSalesmanProblem<String, DefaultWeightedEdge> metricTravellingSalesmanProblem = new MetricTravellingSalesmanProblem<String, DefaultWeightedEdge>();
+        metricTravellingSalesmanProblem.convertInstanceToGraph(listStreets, nodesList);
+//        System.out.println(metricTSP);
     }
 }
