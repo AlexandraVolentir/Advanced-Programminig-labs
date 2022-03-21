@@ -1,3 +1,4 @@
+import com.github.javafaker.Faker;
 import org.jgrapht.alg.spanning.PrimMinimumSpanningTree;
 import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultWeightedEdge;
@@ -15,6 +16,7 @@ public class Main {
      */
     public static void main(String[] args) {
         //The simple way
+        // COMPULSORY
         Intersection[] nodes = IntStream.rangeClosed(0, 8) .mapToObj(i -> new Intersection("vertice" + i) ) .toArray(Intersection[]::new);
         ArrayList<Intersection> nodesList =
                 new ArrayList<Intersection>(Arrays.asList(nodes));
@@ -34,7 +36,6 @@ public class Main {
         Street street12 = new Street("street12", 2, nodesList.get(0), nodesList.get(7));
         Street street13 = new Street("street13", 2, nodesList.get(0), nodesList.get(8));
 
-
         nodesList.forEach(System.out::println);
         ArrayList<Street> listStreets = new ArrayList<>(Arrays.asList(street0,
                 street1, street2, street3,
@@ -42,35 +43,80 @@ public class Main {
                 street7, street8, street9,
                 street10, street11, street12,
                 street13));
-        
+
         listStreets.forEach(System.out::println);
         listStreets.sort(Street::compareStreetsByLength);
         System.out.println();
         listStreets.forEach(System.out::println);
         System.out.println();
 
+        // HOMEWORK
+
+        // generate random fake names for intersections and streets
+        Faker faker = new Faker();
+        for(var intersection : nodesList){
+            intersection.setName(faker.address().firstName());
+        }
+
+        for(var street: listStreets){
+            street.setName(faker.address().streetAddress());
+        }
+
+        String streetAddress = faker.address().streetAddress();
+        String name = faker.address().cityName();
+
+        System.out.println(name);
+
+        // create the city map
+        HashMap<Intersection, ArrayList<Street>> mapIntersectionsToStreets = new HashMap<>();
+        for(var intersection : nodesList){
+            ArrayList<Street> newListOfStreets = new ArrayList<>();
+            for(var street : listStreets){
+                if((street.getNodeList().get(0) == intersection) || ((street.getNodeList().get(1) == intersection)) &&
+                    !newListOfStreets.contains(street)){
+                    newListOfStreets.add(street);
+                }
+            }
+            mapIntersectionsToStreets.put(intersection, newListOfStreets);
+        }
+
+        System.out.println();
+        CityMap cityMap = new CityMap(mapIntersectionsToStreets);
+        System.out.println(cityMap);
+
         Set<Intersection> setOfIntersections = new HashSet<>(nodesList);
         setOfIntersections.add(nodesList.get(0));
         setOfIntersections.add(nodesList.get(0));
         setOfIntersections.forEach(System.out::println);
-        CityMap cityMap = new CityMap();
 
+
+
+        // Filtering
         System.out.println("\nFiltered streets: ");
-        List<Street> filteredList = listStreets.stream()
+
+
+//        List<Street> filteredList = listStreets.stream()
+//                .filter(i -> i.getLength()>2)
+//                .filter(i -> i.findNumberOfJoinedStreets(i, listStreets) >= 3)
+//                .collect(Collectors.toList());
+//        System.out.println();
+
+        listStreets.stream()
+                .filter(v -> ((cityMap.getCityMap()).get(v.getNodeList().get(0)).size() + (cityMap.getCityMap()).get(v.getNodeList().get(1)).size() >= 3))
                 .filter(i -> i.getLength()>2)
-                .filter(i -> i.findNumberOfJoinedStreets(i, listStreets) >= 3)
-                .collect(Collectors.toList());
-        System.out.println();
-        List<Street> filteredList2 = listStreets.stream()
-                .peek(i -> i.findNumberOfJoinedStreets(i, listStreets))
-                .collect(Collectors.toList());
-        filteredList2.forEach(System.out::println);
-        System.out.println();
-//        filteredList.forEach(System.out::println);
-//        List<Intersection> result = nodesList.stream() .filter(v -> cityMap.get(v).containsAll(target)) .collect(Collectors.toList<>);
+                .forEach(System.out::println);
+
+//        List<Street> filteredList2 = listStreets.stream()
+//                .peek(i -> i.findNumberOfJoinedStreets(i, listStreets))
+//                .collect(Collectors.toList());
+//        filteredList2.forEach(System.out::println);
+//        System.out.println();
+
 
         Prim prim = new Prim();
         System.out.println(prim.performPrims(listStreets, nodesList).getSpanningTree());
-        
+
+
+
     }
 }

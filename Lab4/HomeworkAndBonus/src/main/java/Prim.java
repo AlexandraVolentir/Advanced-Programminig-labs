@@ -20,4 +20,6 @@ public class Prim {
         }
         return new PrimMinimumSpanningTree<String, DefaultWeightedEdge>(graph);
     }
+
+
 }

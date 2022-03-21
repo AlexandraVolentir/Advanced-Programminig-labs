@@ -5,15 +5,20 @@ import java.util.*;
  */
 public class CityMap {
 
-    private Map<Intersection, List<Street>> cityMap;
+    private Map<Intersection, ArrayList<Street>> cityMap;
     // one by one (assuming e is an array of streets)
-    private List<Street> streetList;
+    private ArrayList<Street> streetList;
 
     /**
      * default constructor for the cityMap
      */
     public CityMap() {
         cityMap = new HashMap<>();
+        streetList = new ArrayList<>();
+    }
+
+    public CityMap(Map<Intersection, ArrayList<Street>> cityMap) {
+        this.cityMap = new HashMap<>(cityMap);
         streetList = new ArrayList<>();
     }
 
@@ -32,14 +37,14 @@ public class CityMap {
      * @param streetList the value - the streetList
      */
     public void setCityMap(Intersection intersection, ArrayList<Street> streetList){
-        cityMap.put(intersection, Arrays.asList(streetList.get(0), streetList.get(1)));
+        cityMap.put(intersection, streetList);
     }
 
     /**
      * getter for the cityMap
      * @return the city map
      */
-    public Map<Intersection, List<Street>> getCityMap() {
+    public Map<Intersection, ArrayList<Street>> getCityMap() {
         return cityMap;
     }
 
@@ -47,7 +52,7 @@ public class CityMap {
      * setter for the cityMap
      * @param cityMap takes the city map as a parameter
      */
-    public void setCityMap(Map<Intersection, List<Street>> cityMap) {
+    public void setCityMap(Map<Intersection, ArrayList<Street>> cityMap) {
         this.cityMap = cityMap;
     }
 
@@ -55,7 +60,7 @@ public class CityMap {
      * getter for the streetList
      * @return the streetList
      */
-    public List<Street> getStreetList() {
+    public ArrayList<Street> getStreetList() {
         return streetList;
     }
 
@@ -63,7 +68,14 @@ public class CityMap {
      * setter for the streetList
      * @param streetList the streetList
      */
-    public void setStreetList(List<Street> streetList) {
+    public void setStreetList(ArrayList<Street> streetList) {
         this.streetList = streetList;
+    }
+
+    @Override
+    public String toString() {
+        return "CityMap{" +
+                "cityMap=" + cityMap +
+                "}\n";
     }
 }
