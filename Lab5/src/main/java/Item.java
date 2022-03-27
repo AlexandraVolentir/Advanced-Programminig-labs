@@ -1,13 +1,13 @@
 public interface Item{
-    public String getId();
+    String getId();
 
-    public void setId(String id);
+    void setId(String id);
 
-    public String getTitle();
+    String getTitle();
 
-    public void setTitle(String title);
+    void setTitle(String title);
 
-    public String getLocation();
+    String getLocation();
 
-    public void setLocation(String location);
+    void setLocation(String location);
 }

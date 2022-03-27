@@ -1,4 +1,3 @@
-
 import org.jgrapht.*;
 import org.jgrapht.alg.spanning.*;
 import org.jgrapht.generate.CompleteGraphGenerator;
@@ -56,7 +55,7 @@ public class MetricTravellingSalesmanProblem<V, E> {
      * @param givenGraph the graph
      * @return a graph path
      */
-    protected GraphPath<V, E> vertexListToTour(List<V> tour1, Graph<V, E> givenGraph) {
+    public GraphPath<V, E> vertexListToTour(List<V> tour1, Graph<V, E> givenGraph) {
         tour1.add(tour1.get(0));
         return convexListRepresentationToTour(tour1, givenGraph);
     }
@@ -104,7 +103,7 @@ public class MetricTravellingSalesmanProblem<V, E> {
      * @param myGraph The graph
      * @return A tour with a single vertex
      */
-    protected GraphPath<V, E> tourForAGraphWithOneVertex(Graph<V, E> myGraph) {
+    public GraphPath<V, E> tourForAGraphWithOneVertex(Graph<V, E> myGraph) {
         assert myGraph.vertexSet().size() == 1;
         V startVertex = myGraph.vertexSet().iterator().next();
         return new GraphWalk<>(
@@ -115,7 +114,7 @@ public class MetricTravellingSalesmanProblem<V, E> {
      * The graph should be undirected, complete, and non-empty
      * @param myGraph the graph
      */
-    protected void validateGraph(Graph<V, E> myGraph) {
+    public void validateGraph(Graph<V, E> myGraph) {
         checkIfTheGraphIsntEmpty(myGraph);
         if (!GraphTests.isComplete(myGraph)) {
             throw new IllegalArgumentException("NOT COMPLETE!");
@@ -126,7 +125,7 @@ public class MetricTravellingSalesmanProblem<V, E> {
      * checks if the graph is empty
      * @param myGraph the given graph
      */
-    protected void checkIfTheGraphIsntEmpty(Graph<V, E> myGraph) {
+    public void checkIfTheGraphIsntEmpty(Graph<V, E> myGraph) {
         if (myGraph.vertexSet().isEmpty()) {
             throw new IllegalArgumentException("Graph contains no vertices");
         }
@@ -172,7 +171,7 @@ public class MetricTravellingSalesmanProblem<V, E> {
      * @param listStreets the list of streets in the city
      * @param nodesList the list of intersections
      */
-    void convertInstanceToGraph(ArrayList<Street> listStreets, ArrayList<Intersection> nodesList) {
+    public void convertInstanceToGraph(ArrayList<Street> listStreets, ArrayList<Intersection> nodesList) {
         var completeGraph = new SimpleWeightedGraph<String, DefaultEdge>(DefaultEdge.class);
         CompleteGraphGenerator<String, DefaultEdge> completeGenerator
                 = new CompleteGraphGenerator<>(nodesList.size());

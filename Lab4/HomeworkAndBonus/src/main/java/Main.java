@@ -3,7 +3,6 @@ import org.jgrapht.EdgeFactory;
 import org.jgrapht.Graph;
 import org.jgrapht.VertexFactory;
 import org.jgrapht.generate.CompleteGraphGenerator;
-import org.jgrapht.generate.GnpRandomBipartiteGraphGenerator;
 import org.jgrapht.generate.GnpRandomGraphGenerator;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.DefaultWeightedEdge;
@@ -20,7 +19,7 @@ public class Main {
     /**
      * here is where the main code will be executed
      */
-    void randomInstanceGenerator(ArrayList<Intersection> nodesList){
+    static void randomInstanceGenerator(ArrayList<Intersection> nodesList){
 
         CompleteGraphGenerator<String, DefaultEdge> completeGenerator
                 = new CompleteGraphGenerator<>(nodesList.size());
@@ -35,7 +34,7 @@ public class Main {
         Random rand = new Random();
         Graph<String, DefaultWeightedEdge>  newGraph = new ListenableUndirectedGraph<String, DefaultWeightedEdge>(DefaultWeightedEdge.class);
         GnpRandomGraphGenerator<String, DefaultWeightedEdge> graphGenerator = new GnpRandomGraphGenerator<>(10, 0.5, rand,false);
-        graphGenerator.generateGraph(newGraph, vFactory, map);
+//        graphGenerator.generateGraph(newGraph, vFactory, map);
     }
 
     public static void main(String[] args) {
@@ -130,5 +129,6 @@ public class Main {
         MetricTravellingSalesmanProblem<String, DefaultWeightedEdge> metricTravellingSalesmanProblem = new MetricTravellingSalesmanProblem<String, DefaultWeightedEdge>();
         metricTravellingSalesmanProblem.convertInstanceToGraph(listStreets, nodesList);
 //        System.out.println(metricTSP);
+//        randomInstanceGenerator(nodesList);
     }
 }

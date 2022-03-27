@@ -1,4 +1,4 @@
-public class BookItem implements Item {
+public class MiscItem implements Item {
     protected String id;
     protected String title;
     protected String location;
@@ -6,49 +6,29 @@ public class BookItem implements Item {
     protected String author;
     protected String type;
 
-    public BookItem(String id, String title, String location) {
+    // "java17", "The Java Language Specification", "https://docs.oracle.com/javase/specs/jls/se17/html/index.html", "2021", "James Gosling & others"
+    public MiscItem(String id, String title, String location, String year, String author) {
+        this.id = id;
+        this.title = title;
+        this.location = location;
+        this.year = year;
+        this.type = "misc";
+    }
+
+
+    public MiscItem(String id, String title, String location) {
         this.id = id;
         this.title = title;
         this.location = location;
     }
 
-    public BookItem(String id, String title, String location, String year, String author, String type) {
+    public MiscItem(String id, String title, String location, String year, String author, String type) {
         this.id = id;
         this.title = title;
         this.location = location;
         this.year = year;
         this.author = author;
         this.type = type;
-    }
-
-    @Override
-    public String getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    @Override
-    public String getLocation() {
-        return location;
-    }
-
-    @Override
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public String getYear() {
@@ -76,8 +56,38 @@ public class BookItem implements Item {
     }
 
     @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(String id) {
+
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public String getLocation() {
+        return location;
+    }
+
+    @Override
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    @Override
     public String toString() {
-        return "BookItem{" +
+        return "MiscItem{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", location='" + location + '\'' +

@@ -63,6 +63,6 @@ public class Main {
         System.out.println();
 
         Problem p2 = new Problem(n1, n1.getListOfNodes().size());
-        p2.performSafestDijkstra(3,5);
+        p2.performSafestDijkstra(1,5);
     }
 }

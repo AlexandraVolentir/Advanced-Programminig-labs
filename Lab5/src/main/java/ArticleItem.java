@@ -1,18 +1,18 @@
-public class GenericItem implements Item{
+public class ArticleItem implements Item{
     private String id;
     private String title;
     private String location;
-    private int year;
+    private String year;
     private String author;
     private String type;
 
-    public GenericItem(String id, String title, String location) {
+    public ArticleItem(String id, String title, String location) {
         this.id = id;
         this.title = title;
         this.location = location;
     }
 
-    public GenericItem(String id, String title, String location, int year, String author, String type) {
+    public ArticleItem(String id, String title, String location, String year, String author, String type) {
         this.id = id;
         this.title = title;
         this.location = location;
@@ -51,11 +51,11 @@ public class GenericItem implements Item{
         this.location = location;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
@@ -73,5 +73,17 @@ public class GenericItem implements Item{
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "ArticleItem{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", location='" + location + '\'' +
+                ", year='" + year + '\'' +
+                ", author='" + author + '\'' +
+                ", type='" + type + '\'' +
+                '}';
     }
 }
