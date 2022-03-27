@@ -13,7 +13,10 @@ public class Main {
         Catalog catalog = new Catalog();
         catalog.add(item1);
         catalog.add(item2);
-        catalog.save();
+//        catalog.save();
+        catalog.load();
+        System.out.println("NEW");
+        System.out.println(catalog);
     }
     public static void main(String[] args) {
        compulsory();
