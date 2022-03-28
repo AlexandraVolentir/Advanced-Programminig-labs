@@ -10,6 +10,7 @@ public class BookItem extends Item {
         this.id = id;
         this.title = title;
         this.location = location;
+        addTag(id, this);
     }
 
     public BookItem(String id, String title, String location, String year, String author, String type) {
@@ -19,6 +20,7 @@ public class BookItem extends Item {
         this.year = year;
         this.author = author;
         this.type = type;
+        addTag(id, this);
     }
 
     @Override

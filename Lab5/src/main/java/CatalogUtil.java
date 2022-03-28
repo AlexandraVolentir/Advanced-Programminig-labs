@@ -3,6 +3,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.awt.*;
 import java.io.*;
 
 public class CatalogUtil {
@@ -24,7 +25,6 @@ public class CatalogUtil {
             file.write(itemJSONList.toJSONString());
             file.flush();
             System.out.println("---The JSON file \"" + location + "\" was successfully populated with catalog data---");
-
     }
 
     public void parseItemObject(Catalog catalog, JSONObject item)
@@ -61,6 +61,9 @@ public class CatalogUtil {
         return catalog;
     }
 
-    public void view(){}
+    public void view(Item item){
+        Desktop desktop = Desktop.getDesktop();
+
+    }
 
 }

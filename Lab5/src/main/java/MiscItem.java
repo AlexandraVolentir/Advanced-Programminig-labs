@@ -6,13 +6,13 @@ public class MiscItem extends Item {
     protected String author;
     protected String type;
 
-    // "java17", "The Java Language Specification", "https://docs.oracle.com/javase/specs/jls/se17/html/index.html", "2021", "James Gosling & others"
     public MiscItem(String id, String title, String location, String year, String author) {
         this.id = id;
         this.title = title;
         this.location = location;
         this.year = year;
         this.type = "misc";
+        addTag(id, this);
     }
 
 
@@ -20,6 +20,7 @@ public class MiscItem extends Item {
         this.id = id;
         this.title = title;
         this.location = location;
+        addTag(id, this);
     }
 
     public MiscItem(String id, String title, String location, String year, String author, String type) {

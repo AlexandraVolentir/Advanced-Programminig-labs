@@ -12,12 +12,14 @@ public class GenericItem extends Item{
         this.location = location;
         this.year = year;
         this.type = "misc";
+        addTag(id, this);
     }
 
     public GenericItem(String id, String title, String location) {
         this.id = id;
         this.title = title;
         this.location = location;
+        addTag(id, this);
     }
 
     public GenericItem(String id, String title, String location, String year, String author, String type) {
