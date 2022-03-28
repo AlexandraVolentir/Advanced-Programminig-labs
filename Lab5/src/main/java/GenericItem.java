@@ -1,4 +1,4 @@
-public class GenericItem implements Item{
+public class GenericItem extends Item{
     protected String id;
     protected String title;
     protected String location;

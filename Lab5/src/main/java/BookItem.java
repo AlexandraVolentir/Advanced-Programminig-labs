@@ -1,4 +1,4 @@
-public class BookItem implements Item {
+public class BookItem extends Item {
     protected String id;
     protected String title;
     protected String location;

@@ -1,4 +1,4 @@
-public class ArticleItem implements Item{
+public class ArticleItem extends Item{
     private String id;
     private String title;
     private String location;

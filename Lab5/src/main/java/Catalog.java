@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -6,10 +7,13 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import java.io.FileReader;
+import java.util.List;
+import java.util.*;
+import java.util.stream.*;
 
 
-public class Catalog {
-    private ArrayList<Item> listOfItems;
+public class Catalog implements Serializable {
+    private List<Item> listOfItems;
 
     public Catalog(){
         this.listOfItems = new ArrayList<>();
@@ -19,12 +23,17 @@ public class Catalog {
         this.listOfItems = new ArrayList<>(listOfItems);
     }
 
-    public ArrayList<Item> getListOfItems() {
-        return listOfItems;
+    public List<Item> getListOfItems() {
+        return (ArrayList<Item>) listOfItems;
     }
 
     public void setListOfItems(ArrayList<Item> listOfItems) {
         this.listOfItems = listOfItems;
+    }
+
+    public Item findById(String id){
+        return listOfItems.stream()
+                .filter(d->d.getId().equals(id)).findFirst().orElse(null);
     }
 
     public void parseItemObject(JSONObject item)

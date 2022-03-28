@@ -1,4 +1,4 @@
-public class MiscItem implements Item {
+public class MiscItem extends Item {
     protected String id;
     protected String title;
     protected String location;

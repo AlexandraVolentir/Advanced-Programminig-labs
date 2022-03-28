@@ -1,13 +1,28 @@
-public interface Item{
-    String getId();
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
-    void setId(String id);
+public abstract class Item implements Serializable {
 
-    String getTitle();
+    private String id;
+    private String title;
+    private String location;
 
-    void setTitle(String title);
+    private Map<String, Object> tags = new HashMap<>();
 
-    String getLocation();
+    public void addTag(String key, Object obj){
+        tags.put(key, obj);
+    }
 
-    void setLocation(String location);
+    abstract String getId();
+
+    abstract void setId(String id);
+
+    abstract String getTitle();
+
+    abstract void setTitle(String title);
+
+    abstract String getLocation();
+
+    abstract void setLocation(String location);
 }
