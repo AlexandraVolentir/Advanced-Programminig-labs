@@ -11,6 +11,9 @@ import java.nio.file.Path;
 import exceptions.InvalidFileOrURLForView;
 import item.*;
 
+/**
+ * opens an item using the native operating system application
+ */
 public class ViewCommand {
     public void execute(Item item) throws IOException, URISyntaxException, InvalidFileOrURLForView {
         String location = item.getLocation();

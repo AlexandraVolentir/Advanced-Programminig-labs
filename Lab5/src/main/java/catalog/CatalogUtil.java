@@ -2,6 +2,7 @@ package catalog;
 
 import exceptions.InvalidCatalogException;
 import exceptions.NonexistentInformationToBeSaved;
+import exceptions.UnsuccessfulJsonParsing;
 import item.GenericItem;
 import item.Item;
 import org.json.simple.JSONArray;
@@ -10,9 +11,19 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import java.io.*;
 
+
+/**
+ * utility class that has methods that save and load the items in the Catalog class
+ */
 public class CatalogUtil {
+    /**
+     * saves the
+     * @param catalog the catalog
+     * @param location the location
+     * @throws IOException exception I/O
+     */
     @SuppressWarnings("unchecked")
-    public void save(Catalog catalog, String location) throws IOException, NonexistentInformationToBeSaved {
+    public void save(Catalog catalog, String location) throws IOException, NonexistentInformationToBeSaved, UnsuccessfulJsonParsing {
         if(catalog.getListOfItems().isEmpty()){
             throw new NonexistentInformationToBeSaved("catalog can't be parsed because it is empty");
         }
@@ -28,7 +39,7 @@ public class CatalogUtil {
             itemJSONList.add(itemObject);
         }
         if(itemJSONList.isEmpty()){
-
+            throw new UnsuccessfulJsonParsing("unsuccessful json parsing");
         }
         System.out.println(itemJSONList);
         FileWriter file = new FileWriter(location);
@@ -37,6 +48,11 @@ public class CatalogUtil {
         System.out.println("---The JSON file \"" + location + "\" was successfully populated with catalog data---");
     }
 
+    /**
+     * parses the JSON file
+     * @param catalog the catalog
+     * @param item the item
+     */
     public void parseItemObject(Catalog catalog, JSONObject item)
     {
         JSONObject itemObject = (JSONObject) item.get("item");
@@ -54,6 +70,11 @@ public class CatalogUtil {
         System.out.println();
     }
 
+    /**
+     * loads the Catalog from the JSON file
+     * @param location location
+     * @return the loaded new Catalog
+     */
     public Catalog load(String location) throws InvalidCatalogException, IOException, ParseException {
         File file = new File(location);
         if(!file.exists()){

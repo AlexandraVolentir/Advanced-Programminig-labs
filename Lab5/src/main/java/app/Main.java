@@ -8,15 +8,17 @@ import command.ReportCommand;
 import exceptions.InvalidCatalogException;
 import exceptions.InvalidFileOrURLForView;
 import exceptions.NonexistentInformationToBeSaved;
+import exceptions.UnsuccessfulJsonParsing;
 import item.BookItem;
 import item.MiscItem;
-import org.apache.tika.exception.TikaException;
 import org.json.simple.parser.ParseException;
-import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+/**
+ * here the main code will be executed
+ */
 public class Main {
 
     public static void compulsory(){
@@ -33,7 +35,7 @@ public class Main {
         CatalogUtil catalogUtil = new CatalogUtil();
         try{
             catalogUtil.save(catalog1, "catalog.json");
-        } catch (IOException | NonexistentInformationToBeSaved e) {
+        } catch (IOException | NonexistentInformationToBeSaved | UnsuccessfulJsonParsing e) {
             e.printStackTrace();
         }
         Catalog catalog2 = new Catalog();
@@ -74,19 +76,10 @@ public class Main {
             e.printStackTrace();
         }
 
-//        try{
-//            reportCommand.execute(catalog1, "/");
-//        } catch (IOException | TemplateException e) {
-//            e.printStackTrace();
-//        }
-
         System.out.println("Apache Tika in order to extract metadata from the catalog with command.InfoCommand class:\n");
         InfoCommand infoCommand = new InfoCommand();
-        try {
-            infoCommand.parseExample("catalog.json");
-        } catch (IOException | SAXException | TikaException e) {
-            e.printStackTrace();
-        }
+        infoCommand.execute("catalog.json");
+
     }
     public static void main(String[] args){
        compulsory();
