@@ -10,12 +10,12 @@ import java.io.IOException;
 import org.apache.tika.parser.txt.TXTParser;
 
 
-public class InfoCommand {
-    public String parseExample(String location) throws IOException, SAXException, TikaException {
+public class InfoCommand extends Command {
+    public String parseExample(Object location) throws IOException, SAXException, TikaException {
         BodyContentHandler bodyContentHandler
                 = new BodyContentHandler();
         FileInputStream fileInputStream
-                = new FileInputStream(location);
+                = new FileInputStream((String)location);
         Metadata metadata = new Metadata();
         ParseContext parseContext = new ParseContext();
         TXTParser textParser = new TXTParser();

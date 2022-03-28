@@ -1,20 +1,21 @@
 package catalog;
 
-import catalog.Catalog;
 import exceptions.InvalidCatalogException;
+import exceptions.NonexistentInformationToBeSaved;
 import item.GenericItem;
 import item.Item;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
-import java.awt.*;
 import java.io.*;
 
 public class CatalogUtil {
     @SuppressWarnings("unchecked")
-    public void save(Catalog catalog, String location) throws IOException{
+    public void save(Catalog catalog, String location) throws IOException, NonexistentInformationToBeSaved {
+        if(catalog.getListOfItems().isEmpty()){
+            throw new NonexistentInformationToBeSaved("catalog can't be parsed because it is empty");
+        }
         System.out.println("list of items:"+ catalog.getListOfItems());
         JSONArray itemJSONList = new JSONArray();
         for(Item item : catalog.getListOfItems()){
@@ -26,11 +27,14 @@ public class CatalogUtil {
             itemObject.put("item", itemDetails);
             itemJSONList.add(itemObject);
         }
+        if(itemJSONList.isEmpty()){
+
+        }
         System.out.println(itemJSONList);
         FileWriter file = new FileWriter(location);
-            file.write(itemJSONList.toJSONString());
-            file.flush();
-            System.out.println("---The JSON file \"" + location + "\" was successfully populated with catalog data---");
+        file.write(itemJSONList.toJSONString());
+        file.flush();
+        System.out.println("---The JSON file \"" + location + "\" was successfully populated with catalog data---");
     }
 
     public void parseItemObject(Catalog catalog, JSONObject item)
@@ -52,9 +56,9 @@ public class CatalogUtil {
 
     public Catalog load(String location) throws InvalidCatalogException, IOException, ParseException {
         File file = new File(location);
-//        if(!file.exists()){
-//            throw new exceptions.InvalidCatalogException(new ParseException());
-//        }
+        if(!file.exists()){
+            throw new exceptions.InvalidCatalogException("The file " + location + "couldnt be parsed");
+        }
         Catalog catalog = new Catalog();
         System.out.println();
         JSONParser jsonParser = new JSONParser();
@@ -63,13 +67,6 @@ public class CatalogUtil {
         JSONArray extractedItemList = (JSONArray) obj;
         extractedItemList.forEach( emp -> parseItemObject( catalog, (JSONObject) emp ));
         System.out.println("---The file was loaded successfully---");
-
         return catalog;
     }
-
-    public void view(Item item){
-        Desktop desktop = Desktop.getDesktop();
-
-    }
-
 }

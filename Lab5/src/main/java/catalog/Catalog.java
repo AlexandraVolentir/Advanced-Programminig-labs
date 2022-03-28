@@ -2,11 +2,8 @@ package catalog;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import item.Item;
-
 import java.util.List;
-
 
 public class Catalog implements Serializable {
     private List<Item> listOfItems;
@@ -31,7 +28,6 @@ public class Catalog implements Serializable {
         return listOfItems.stream()
                 .filter(d->d.getId().equals(id)).findFirst().orElse(null);
     }
-
 
 
     public void add(Item item){

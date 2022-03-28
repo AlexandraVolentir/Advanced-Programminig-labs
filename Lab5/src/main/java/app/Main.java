@@ -4,7 +4,10 @@ import catalog.*;
 import catalog.CatalogUtil;
 import command.InfoCommand;
 import command.ListCommand;
+import command.ReportCommand;
 import exceptions.InvalidCatalogException;
+import exceptions.InvalidFileOrURLForView;
+import exceptions.NonexistentInformationToBeSaved;
 import item.BookItem;
 import item.MiscItem;
 import org.apache.tika.exception.TikaException;
@@ -12,12 +15,13 @@ import org.json.simple.parser.ParseException;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class Main {
 
     public static void compulsory(){
         System.out.println("-------COMPULSORY-------");
-        BookItem item1 = new BookItem("knuth67", "The Art of Computer Programming", "d:/books/programming/tacp.ps", "1967", "Donald E. Knuth", "book");
+        BookItem item1 = new BookItem("knuth67", "The Art of Computer Programming", "bookExample.txt", "1967", "Donald E. Knuth", "book");
         MiscItem item2 = new MiscItem("java17", "The Java Language Specification", "https://docs.oracle.com/javase/specs/jls/se17/html/index.html", "2021", "James Gosling & others");
 
         System.out.println(item1);
@@ -29,7 +33,7 @@ public class Main {
         CatalogUtil catalogUtil = new CatalogUtil();
         try{
             catalogUtil.save(catalog1, "catalog.json");
-        } catch (IOException e) {
+        } catch (IOException | NonexistentInformationToBeSaved e) {
             e.printStackTrace();
         }
         Catalog catalog2 = new Catalog();
@@ -55,15 +59,21 @@ public class Main {
         ListCommand listCommand = new ListCommand();
         listCommand.execute(catalog1);
 
-//        command.ViewCommand viewCommand = new command.ViewCommand();
-//        try{
-//            viewCommand.execute(item2);
-//            viewCommand.execute(item1);
-//        } catch (IOException | URISyntaxException e) {
-//            e.printStackTrace();
-//        }
+        command.ViewCommand viewCommand = new command.ViewCommand();
+        try{
+            viewCommand.execute(item2);
+            viewCommand.execute(item1);
+        } catch (IOException | URISyntaxException | InvalidFileOrURLForView e) {
+            e.printStackTrace();
+        }
 
-//        command.command.ReportCommand reportCommand = new command.command.ReportCommand();
+        ReportCommand reportCommand = new ReportCommand();
+        try{
+            reportCommand.execute(catalog1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 //        try{
 //            reportCommand.execute(catalog1, "/");
 //        } catch (IOException | TemplateException e) {

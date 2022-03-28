@@ -1,0 +1,17 @@
+exceptions/UnsuccessfulJsonParsing.class
+item/ArticleItem.class
+item/MiscItem.class
+exceptions/InvalidCatalogException.class
+command/ViewCommand.class
+command/InfoCommand.class
+app/Main.class
+exceptions/NonexistentInformationToBeSaved.class
+item/BookItem.class
+catalog/CatalogUtil.class
+command/ListCommand.class
+command/ReportCommand.class
+exceptions/InvalidFileOrURLForView.class
+item/Item.class
+item/GenericItem.class
+command/Command.class
+catalog/Catalog.class

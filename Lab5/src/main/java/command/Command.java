@@ -1,5 +1,5 @@
 package command;
 
-public interface Command {
-    public void execute();
+public abstract class Command {
+    public void execute(Object obj){}
 }
