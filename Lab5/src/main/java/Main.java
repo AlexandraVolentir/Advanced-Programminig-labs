@@ -1,5 +1,9 @@
 
+import freemarker.template.TemplateException;
+import org.apache.tika.exception.TikaException;
 import org.json.simple.parser.ParseException;
+import freemarker.template.Configuration;
+import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -49,15 +53,28 @@ public class Main {
         ListCommand listCommand = new ListCommand();
         listCommand.execute(catalog1);
 
-        ViewCommand viewCommand = new ViewCommand();
-        try{
-            viewCommand.execute(item2);
+//        ViewCommand viewCommand = new ViewCommand();
+//        try{
+//            viewCommand.execute(item2);
+//            viewCommand.execute(item1);
+//        } catch (IOException | URISyntaxException e) {
+//            e.printStackTrace();
+//        }
 
-            viewCommand.execute(item1);
-        } catch (IOException | URISyntaxException e) {
+//        ReportCommand reportCommand = new ReportCommand();
+//        try{
+//            reportCommand.execute(catalog1, "/");
+//        } catch (IOException | TemplateException e) {
+//            e.printStackTrace();
+//        }
+
+        System.out.println("Apache Tika in order to extract metadata from the catalog with InfoCommand class:\n");
+        InfoCommand infoCommand = new InfoCommand();
+        try {
+            infoCommand.parseExample("catalog.json");
+        } catch (IOException | SAXException | TikaException e) {
             e.printStackTrace();
         }
-
     }
     public static void main(String[] args){
        compulsory();
