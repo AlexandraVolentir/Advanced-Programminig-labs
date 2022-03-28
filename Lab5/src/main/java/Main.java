@@ -1,4 +1,7 @@
 
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 public class Main {
@@ -15,8 +18,18 @@ public class Main {
         catalog1.add(item1);
         catalog1.add(item2);
         CatalogUtil catalogUtil = new CatalogUtil();
-        catalogUtil.save(catalog1, "catalog.json");
-        Catalog catalog2 = catalogUtil.load("catalog.json");
+        try{
+            catalogUtil.save(catalog1, "catalog.json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Catalog catalog2 = new Catalog();
+        try{
+            catalog2 = catalogUtil.load("catalog.json");
+        } catch (InvalidCatalogException | IOException | ParseException e) {
+            e.printStackTrace();
+        }
+
         System.out.println("NEW");
         System.out.println(catalog2);
 

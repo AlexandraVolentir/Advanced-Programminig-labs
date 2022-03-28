@@ -3,14 +3,11 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 
 public class CatalogUtil {
     @SuppressWarnings("unchecked")
-    public void save(Catalog catalog, String location){
+    public void save(Catalog catalog, String location) throws IOException{
         System.out.println("list of items:"+ catalog.getListOfItems());
         JSONArray itemJSONList = new JSONArray();
         for(Item item : catalog.getListOfItems()){
@@ -23,13 +20,11 @@ public class CatalogUtil {
             itemJSONList.add(itemObject);
         }
         System.out.println(itemJSONList);
-        try (FileWriter file = new FileWriter(location)) {
+        FileWriter file = new FileWriter(location);
             file.write(itemJSONList.toJSONString());
             file.flush();
             System.out.println("---The JSON file \"" + location + "\" was successfully populated with catalog data---");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 
     public void parseItemObject(Catalog catalog, JSONObject item)
@@ -49,22 +44,22 @@ public class CatalogUtil {
         System.out.println();
     }
 
+    public Catalog load(String location) throws InvalidCatalogException, IOException, ParseException {
+        File file = new File(location);
+//        if(!file.exists()){
+//            throw new InvalidCatalogException(new ParseException());
+//        }
+        Catalog catalog = new Catalog();
+        System.out.println();
+        JSONParser jsonParser = new JSONParser();
+        FileReader reader = new FileReader(location);
+        Object obj = jsonParser.parse(reader);
+        JSONArray extractedItemList = (JSONArray) obj;
+        extractedItemList.forEach( emp -> parseItemObject( catalog, (JSONObject) emp ));
+        System.out.println("---The file was loaded successfully---");
 
-        public Catalog load(String location){
-            Catalog catalog = new Catalog();
-            System.out.println();
-            JSONParser jsonParser = new JSONParser();
-            try (FileReader reader = new FileReader(location))
-            {
-                Object obj = jsonParser.parse(reader);
-                JSONArray extractedItemList = (JSONArray) obj;
-                extractedItemList.forEach( emp -> parseItemObject( catalog, (JSONObject) emp ));
-                System.out.println("---The file was loaded successfully---");
-            } catch (IOException | ParseException e) {
-                e.printStackTrace();
-            }
-            return catalog;
-        }
+        return catalog;
+    }
 
     public void view(){}
 
