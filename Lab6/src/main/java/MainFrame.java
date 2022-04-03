@@ -1,29 +1,31 @@
 import javax.swing.*;
-
 import java.awt.*;
 
 public class MainFrame extends JFrame {
     ConfigPanel configPanel;
     ControlPanel controlPanel;
     DrawingPanel canvas;
-    
+
+    public MainFrame(){
+        super("My drawing application");
+        init();
+    }
+
     private void init(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        // create the components
+         // create the components
         canvas = new DrawingPanel(this);
-        
-        // arrange the components in the container(frame)
-        // JFrame uses a BorderLayout by default
+        // TO DO
+
+        // arrange the components in the container (frame)
+        // JFRAME uses a BorderLayout by default
         add(canvas, BorderLayout.CENTER);
+        // TO DO
+
+        // invoke the layout manager
         pack();
+
+
     }
 
-    private void add(DrawingPanel canvas, String center) {
-    }
-
-    // invoke the layout manager
-
-    public static void main(String[] args) {
-        System.out.println("Hellli");
-    }
 }

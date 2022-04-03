@@ -9,13 +9,5 @@
         <module name="Lab6" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Lab6" target="17" />
-    </bytecodeTargetLevel>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Lab6" options="--add-exports java.desktop/sun.awt=com.example.lab6" />
-    </option>
   </component>
 </project>

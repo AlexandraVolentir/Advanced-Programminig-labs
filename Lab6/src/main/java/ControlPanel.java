@@ -1,25 +1,30 @@
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class ControlPanel extends JPanel {
     final MainFrame frame;
-    JLabel label;
-    JSpinner spinner;
+    JButton exitBin = new JButton("Exit");
+    // create all buttons (Load, Exit, etc.)
+    // TO DO
 
-    public ControlPanel(MainFrame frame) {
+    public ControlPanel(MainFrame frame){
         this.frame = frame;
-        init();
     }
 
     private void init(){
-        // create the label and the spinner
-        label = new JLabel("Grid size: ");
-        spinner = new JSpinner(new SpinnerNumberModel(10,2,100,1));
+        // change the default layout manager (just for fun)
+        setLayout(new GridLayout(1,4));
 
-        // create spinners for rows and cols and the button
-        // TO DO
+        // add all buttons ... TO DO
 
-        add(label);
-        add(spinner);
+        // configure listeners for all buttons
+        exitBin.addActionListener(this::exitGame);
     }
+
+    private void exitGame(ActionEvent e){
+        frame.dispose();
+    }
+
 
 }
