@@ -1,3 +1,7 @@
+package game;
+
+import frame.MainFrame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;

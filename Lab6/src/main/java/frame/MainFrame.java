@@ -1,20 +1,24 @@
+package frame;
+
+import game.ConfigPanel;
+import game.ControlPanel;
+import game.DrawingPanel;
+
 import javax.swing.*;
 
 import java.awt.*;
 
-import static javax.swing.SwingConstants.CENTER;
-
 /**
- * Main Frane of the aplication
+ * app.Main Frane of the aplication
  */
 public class MainFrame extends JFrame
 {
-    ConfigPanel configPanel;
+    public ConfigPanel configPanel;
     ControlPanel controlPanel;
-    DrawingPanel canvas;
+    public DrawingPanel canvas;
 
     /**
-     * constructor for the Main Frame
+     * constructor for the app.Main Frame
      */
     public MainFrame(){
         super("My drawing app");

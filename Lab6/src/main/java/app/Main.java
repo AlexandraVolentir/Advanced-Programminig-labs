@@ -1,3 +1,7 @@
+package app;
+
+import frame.MainFrame;
+
 import javax.swing.*;
 
     public class Main {

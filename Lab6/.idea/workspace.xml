@@ -54,8 +54,8 @@
       </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Compulsory6" />
+      <option name="MAIN_CLASS_NAME" value="app.Main" />
+      <module name="Lab6" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

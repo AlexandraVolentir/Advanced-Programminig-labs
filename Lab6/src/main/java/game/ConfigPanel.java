@@ -1,8 +1,11 @@
+package game;
+
+import frame.MainFrame;
+
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
 
 /**
  * panel for introducing parameters regarding the grid
