@@ -9,7 +9,16 @@ public class Player {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setGame(Game game) {
+        this.game = game;
     }
 
     public boolean submitWord(){
@@ -17,14 +26,31 @@ public class Player {
         if(extracted.isEmpty()){
             return false;
         }
-        String word = "";
+        StringBuilder word = new StringBuilder();
 
         // create a word with all the extracted tiles
-        game.getBoard().addWord(this, word);
-
+        for (Tile tile : extracted) {
+            word.append(tile.getLetter());
+        }
+        game.getBoard().addWord(this, word.toString());
+        System.out.println("player: " + getName() + "SUBMITED A WORD: " + word.toString());
         // make the player sleep 50 ms
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return true;
     }
 
-    // TODO implement the run method
+    public void run(){
+        running = true;
+        int pointsAccumulated = 0;
+        boolean flag = submitWord();
+        while(flag){
+            flag = submitWord();
+        }
+        running = false;
+    }
+
 }
