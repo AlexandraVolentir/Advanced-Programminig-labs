@@ -74,7 +74,7 @@ public class Bag {
                 }
             }
         }
-        System.out.println(extracted);
+        System.out.println("Bag, extracted tiles:" + extracted);
         return extracted;
     }
 }
