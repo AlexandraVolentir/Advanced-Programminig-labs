@@ -35,12 +35,13 @@ public class Player {
 
         if(MockDictionary.isWord(word.toString())){
             game.getBoard().addWord(this, word.toString());
-            System.out.println("player: " + getName() + "SUBMITED A WORD: " + word.toString());
+            System.out.println("player: " + getName() + "SUBMITTED A WORD: " + word.toString());
             // make the player sleep 50 ms
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                System.out.println(" AICI 3 player");
             }
             return true;
         }

@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.concurrent.Executors;
 
 public class Game {
-    private final Bag bag;
+    private Bag bag;
     private final Board board = new Board();
     private final MockDictionary dictionary= new MockDictionary();
     private List<Player> players = new ArrayList<>();
@@ -14,7 +14,12 @@ public class Game {
     }
 
     public Game(Bag bag){
-        this.bag = bag;
+//        try {
+//            this.bag = new Bag(bag);
+//        } catch (CloneNotSupportedException e) {
+//            e.printStackTrace();
+//            System.out.println(" AICI 1");
+//        }
     }
 
     public void addPlayer(Player player){
@@ -50,38 +55,44 @@ public class Game {
     }
 
     static Map<Tile, Integer> initializeBagOfTiles(){
-        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+        Map<Tile, Integer> bagOfTiles = new HashMap<>();
         File f = new File("board.txt");
         Scanner in = null;
         try {
             in = new Scanner(f);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            System.out.println(" AICI 2");
         }
-        Map<Tile, Integer> bagOfTiles = new HashMap<>();
         while (in.hasNext()) {
             String[] words = in.nextLine().split(" ");
             bagOfTiles.put(new Tile(words[0].charAt(0),Integer.parseInt(words[1])), Integer.parseInt(words[2]));
 
         }
-//        for (Map.Entry<Tile, Integer> entry : bagOfTiles.entrySet()) {
-//            Tile key = entry.getKey();
-//            Integer value = entry.getValue();
-//            System.out.println(key + " ---- " + value);
-//        }
+        for (Map.Entry<Tile, Integer> entry : bagOfTiles.entrySet()) {
+            Tile key = entry.getKey();
+            Integer value = entry.getValue();
+            System.out.println(key + " ---- " + value);
+        }
         return bagOfTiles;
     }
 
     static void homework(){
 
 
-        Bag bag = new Bag(initializeBagOfTiles());
-//        listOfWords.put()
+        Bag bag = new Bag();
+        System.out.println(" ----------------");
+        System.out.println("AM FOST AICI");
+
         Game game = new Game();
+        System.out.println("AM FOST AICI 2");
         game.addPlayer(new Player("Player 1"));
+        System.out.println("AM FOST AICI 3");
         game.addPlayer(new Player("Player 2"));
+        System.out.println("AM FOST AICI 4");
         game.addPlayer(new Player("Player 3"));
         game.play();
+        System.out.println("AM FOST AICI 5");
     }
 
     public static void main(String[] args) {
