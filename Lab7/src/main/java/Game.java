@@ -1,7 +1,6 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
 import java.util.concurrent.Executors;
 
 public class Game {
@@ -51,33 +50,25 @@ public class Game {
     }
 
     static Map<Tile, Integer> initializeBagOfTiles(){
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+        File f = new File("board.txt");
+        Scanner in = null;
+        try {
+            in = new Scanner(f);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         Map<Tile, Integer> bagOfTiles = new HashMap<>();
-        bagOfTiles.put(new Tile('A',1), 9);
-        bagOfTiles.put(new Tile('B',3), 2);
-        bagOfTiles.put(new Tile('C',3), 2);
-        bagOfTiles.put(new Tile('D',2), 4);
-        bagOfTiles.put(new Tile('E',1), 12);
-        bagOfTiles.put(new Tile('F',4), 2);
-        bagOfTiles.put(new Tile('G',2), 3);
-        bagOfTiles.put(new Tile('H',4), 2);
-        bagOfTiles.put(new Tile('I',1), 9);
-        bagOfTiles.put(new Tile('J',8), 1);
-        bagOfTiles.put(new Tile('K',5), 4);
-        bagOfTiles.put(new Tile('L',1), 2);
-        bagOfTiles.put(new Tile('M',3), 6);
-        bagOfTiles.put(new Tile('N',1), 8);
-        bagOfTiles.put(new Tile('O',1), 8);
-        bagOfTiles.put(new Tile('P',3), 2);
-        bagOfTiles.put(new Tile('Q',10), 1);
-        bagOfTiles.put(new Tile('R',1), 6);
-        bagOfTiles.put(new Tile('S',1), 4);
-        bagOfTiles.put(new Tile('T',1), 6);
-        bagOfTiles.put(new Tile('U',1), 4);
-        bagOfTiles.put(new Tile('V',4), 2);
-        bagOfTiles.put(new Tile('W',4), 2);
-        bagOfTiles.put(new Tile('X',8), 1);
-        bagOfTiles.put(new Tile('Y',4), 2);
-        bagOfTiles.put(new Tile('Z',10), 1);
+        while (in.hasNext()) {
+            String[] words = in.nextLine().split(" ");
+            bagOfTiles.put(new Tile(words[0].charAt(0),Integer.parseInt(words[1])), Integer.parseInt(words[2]));
+
+        }
+//        for (Map.Entry<Tile, Integer> entry : bagOfTiles.entrySet()) {
+//            Tile key = entry.getKey();
+//            Integer value = entry.getValue();
+//            System.out.println(key + " ---- " + value);
+//        }
         return bagOfTiles;
     }
 
