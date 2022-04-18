@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * app.Main Frane of the aplication
+ * app.Main Frane of the application
  */
 public class MainFrame extends JFrame
 {
@@ -35,13 +35,10 @@ public class MainFrame extends JFrame
         setSize(600, 500);
         setLocationRelativeTo(null);
 
-
         //create the components
-
         configPanel = new ConfigPanel(this);
         canvas = new DrawingPanel(this);
         controlPanel = new ControlPanel(this);
-
 
         getContentPane().add(configPanel,BorderLayout.NORTH);
         getContentPane().add(canvas, BorderLayout.CENTER);

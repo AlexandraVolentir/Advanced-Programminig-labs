@@ -95,7 +95,6 @@ public class DrawingPanel extends JPanel {
                 repaint();
             }
         });
-
     }
 
     /**
