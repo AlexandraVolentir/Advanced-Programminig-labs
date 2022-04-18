@@ -1,15 +1,18 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 public class Bag {
     private Map<Tile, Integer> bagOfTiles;
+//    private Map<Character, Integer> tileNameToValue = new HashMap<>();
     private int numberOfTiles = 0;
     private static final int TILES_PER_LETTER = 10;
 
+
     public Bag() {
-        bagOfTiles = new HashMap<>();
+        bagOfTiles = new ConcurrentHashMap<>();
         File f = new File("board.txt");
         Scanner in = null;
         try {
@@ -35,27 +38,33 @@ public class Bag {
         }
 
         System.out.println("HERE IS THE BAG OF TILES" + bagOfTiles);
-        System.out.println("nr of tiles" + numberOfTiles);
+        System.out.println("nr of tiles " + numberOfTiles);
         System.out.println();
 
-
         numberOfTiles = 0;
-        bagOfTiles = new HashMap<>();
+        bagOfTiles = new ConcurrentHashMap<>();
         for (char c = 'a'; c < 'z'; c++) {
             bagOfTiles.put(new Tile(c, RandomGenerator.getRandomNumber(1,11)), TILES_PER_LETTER);
             numberOfTiles += TILES_PER_LETTER;
         }
-        System.out.println("HERE IS THE BAG OF TILES" + bagOfTiles);
-        System.out.println(numberOfTiles);
+//        System.out.println("HERE IS THE BAG OF TILES" + bagOfTiles);
+//        System.out.println(numberOfTiles);
+
+//        for (Map.Entry<Tile, Integer> entry : bagOfTiles.entrySet()) {
+//            Tile key = entry.getKey();
+//            Integer value = entry.getValue();
+//            numberOfTiles += value;
+//            tileNameToValue.put(key.getLetter(), value);
+//        }
     }
 
     public Bag(Map<Tile, Integer> bagOfTiles){
-        this.bagOfTiles = new HashMap<>(bagOfTiles);
+        this.bagOfTiles = new ConcurrentHashMap<>(bagOfTiles);
         numberOfTiles = bagOfTiles.size();
     }
 
     static Map<Tile, Integer> initializeBagOfTiles(){
-        Map<Tile, Integer> bagOfTiles = new HashMap<>();
+        Map<Tile, Integer> bagOfTiles = new ConcurrentHashMap<>();
         File f = new File("board.txt");
         Scanner in = null;
         try {
@@ -95,6 +104,14 @@ public class Bag {
     public int getRandomNumber(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
     }
+
+//    public Map<Character, Integer> getTileNameToValue() {
+//        return tileNameToValue;
+//    }
+//
+//    public void setTileNameToValue(Map<Character, Integer> tileNameToValue) {
+//        this.tileNameToValue = tileNameToValue;
+//    }
 
     public Tile checkForCharacterInBag(char character) {
         if (numberOfTiles == 0) {

@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 
 public class Game {
@@ -55,7 +56,7 @@ public class Game {
     }
 
     static Map<Tile, Integer> initializeBagOfTiles(){
-        Map<Tile, Integer> bagOfTiles = new HashMap<>();
+        Map<Tile, Integer> bagOfTiles = new ConcurrentHashMap<>();
         File f = new File("board.txt");
         Scanner in = null;
         try {
@@ -80,7 +81,7 @@ public class Game {
     static void homework(){
 
 
-        Bag bag = new Bag();
+
         System.out.println(" ----------------");
         System.out.println("AM FOST AICI");
 
