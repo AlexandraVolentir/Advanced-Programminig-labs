@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -5,6 +6,7 @@ public class Player {
     private String name;
     private Game game;
     private boolean running;
+    static Map<Player, Integer> score = new HashMap<>();
     int pointsAccumulated = 0;
 
     public Player(String name) {
@@ -29,6 +31,14 @@ public class Player {
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public static Map<Player, Integer> getScore() {
+        return score;
+    }
+
+    public static void setScore(Map<Player, Integer> score) {
+        Player.score = score;
     }
 
     public int getWordValue(String word){
@@ -62,6 +72,7 @@ public class Player {
             pointsAccumulated += getWordValue(word.toString());
 //            System.out.println("player: " + getName() + "SUBMITTED A WORD: " + word.toString());
             // make the player sleep 50 ms
+
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
@@ -80,7 +91,23 @@ public class Player {
             flag = submitWord();
         }
         System.out.println(getName() + " accumulated " + getPointsAccumulated());
+        score.put(this, getPointsAccumulated());
         running = false;
+
+        // get the winner of the game
+        if(Player.getScore().size() == 3){
+            int max = 0;
+            String winner = "";
+            for (Map.Entry<Player, Integer> entry : Player.getScore().entrySet()) {
+                Player key = entry.getKey();
+                Integer value = entry.getValue();
+                if(value > max){
+                    winner = key.getName();
+                    max = value;
+                }
+            }
+            System.out.println("The winner is the player " + winner + " with the score " + max);
+        }
     }
 
 }

@@ -36,6 +36,13 @@ public class Game {
                     player.run();
                 }
             });
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            Executors.newSingleThreadExecutor().shutdown();
+//            Executors.newSingleThreadExecutor().awaitTermination(20);
         }
     }
 
@@ -94,6 +101,7 @@ public class Game {
         game.addPlayer(new Player("Player 3"));
         game.play();
         System.out.println("AM FOST AICI 5");
+
     }
 
     public static void main(String[] args) {

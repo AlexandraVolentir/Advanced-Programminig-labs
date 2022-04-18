@@ -127,6 +127,7 @@ public class Bag {
     }
 
     public synchronized List<Tile> extractTiles(int howMany) {
+        
         List<Tile> extracted = new ArrayList<>();
         if (bagOfTiles.isEmpty()) {
             return extracted;
