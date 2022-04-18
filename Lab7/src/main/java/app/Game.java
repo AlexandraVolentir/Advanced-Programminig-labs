@@ -1,3 +1,12 @@
+package app;
+
+import elements.Bag;
+import elements.Board;
+import elements.Tile;
+import player.Player;
+import utilities.Dictionary;
+import utilities.MockDictionary;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -16,7 +25,7 @@ public class Game {
 
     public Game(Bag bag){
 //        try {
-//            this.bag = new Bag(bag);
+//            this.bag = new elements.Bag(bag);
 //        } catch (CloneNotSupportedException e) {
 //            e.printStackTrace();
 //            System.out.println(" AICI 1");
@@ -29,6 +38,9 @@ public class Game {
     }
 
     public void play(){
+//        DaemonThread t1 = new DaemonThread("t1");
+//        t1.setDaemon(true);
+//        t1.start();
         for(Player player : players){
             Executors.newSingleThreadExecutor().execute(new Runnable() {
                 @Override
@@ -36,13 +48,6 @@ public class Game {
                     player.run();
                 }
             });
-//            try {
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            Executors.newSingleThreadExecutor().shutdown();
-//            Executors.newSingleThreadExecutor().awaitTermination(20);
         }
     }
 
@@ -56,9 +61,9 @@ public class Game {
 
     static void compulsory(){
         Game game = new Game();
-        game.addPlayer(new Player("Player 1"));
-        game.addPlayer(new Player("Player 2"));
-        game.addPlayer(new Player("Player 3"));
+        game.addPlayer(new Player("player.Player 1"));
+        game.addPlayer(new Player("player.Player 2"));
+        game.addPlayer(new Player("player.Player 3"));
         game.play();
     }
 
@@ -86,21 +91,12 @@ public class Game {
     }
 
     static void homework(){
-
-
-
-        System.out.println(" ----------------");
-        System.out.println("AM FOST AICI");
-
+        utilities.Dictionary dictionary = new Dictionary(1000);
         Game game = new Game();
-        System.out.println("AM FOST AICI 2");
-        game.addPlayer(new Player("Player 1"));
-        System.out.println("AM FOST AICI 3");
-        game.addPlayer(new Player("Player 2"));
-        System.out.println("AM FOST AICI 4");
-        game.addPlayer(new Player("Player 3"));
+        game.addPlayer(new Player("player.Player 1"));
+        game.addPlayer(new Player("player.Player 2"));
+        game.addPlayer(new Player("player.Player 3"));
         game.play();
-        System.out.println("AM FOST AICI 5");
 
     }
 

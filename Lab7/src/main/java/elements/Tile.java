@@ -1,3 +1,5 @@
+package elements;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +34,7 @@ public class Tile {
 
     @Override
     public String toString() {
-        return "Tile{" +
+        return "elements.Tile{" +
                 "letter=" + letter +
                 ", points=" + points +
                 '}';

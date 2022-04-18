@@ -1,3 +1,7 @@
+package elements;
+
+import player.Player;
+
 import java.util.HashMap;
 
 public class Board {

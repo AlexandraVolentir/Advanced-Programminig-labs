@@ -13,4 +13,30 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.maximeroussy.invitrode</groupId>
+            <artifactId>invitrode</artifactId>
+            <version>2.0.2</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>me.shib.java.lib</groupId>
+            <artifactId>diction</artifactId>
+            <version>0.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>0.15</version>
+        </dependency>
+
+
+<!--        <dependency>-->
+<!--            <groupId>com.autonomousapps.dependency-analysis</groupId>-->
+<!--            <artifactId>com.autonomousapps.dependency-analysis.gradle.plugin</artifactId>-->
+<!--            <version>1.0.0-rc06</version>-->
+<!--        </dependency>-->
+    </dependencies>
+
 </project>

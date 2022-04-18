@@ -1,8 +1,11 @@
+package elements;
+
+import utilities.RandomGenerator;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
 
 public class Bag {
     private Map<Tile, Integer> bagOfTiles;
@@ -50,8 +53,8 @@ public class Bag {
 //        System.out.println("HERE IS THE BAG OF TILES" + bagOfTiles);
 //        System.out.println(numberOfTiles);
 
-//        for (Map.Entry<Tile, Integer> entry : bagOfTiles.entrySet()) {
-//            Tile key = entry.getKey();
+//        for (Map.Entry<elements.Tile, Integer> entry : bagOfTiles.entrySet()) {
+//            elements.Tile key = entry.getKey();
 //            Integer value = entry.getValue();
 //            numberOfTiles += value;
 //            tileNameToValue.put(key.getLetter(), value);
@@ -127,7 +130,6 @@ public class Bag {
     }
 
     public synchronized List<Tile> extractTiles(int howMany) {
-        
         List<Tile> extracted = new ArrayList<>();
         if (bagOfTiles.isEmpty()) {
             return extracted;
@@ -150,13 +152,13 @@ public class Bag {
                 }
             }
         }
-        System.out.println("Bag, extracted tiles:" + extracted);
+        System.out.println("elements.Bag, extracted tiles:" + extracted);
         return extracted;
     }
 
     @Override
     public String toString() {
-        return "Bag{" +
+        return "elements.Bag{" +
                 "bagOfTiles=" + bagOfTiles +
                 ", numberOfTiles=" + numberOfTiles +
                 '}';
