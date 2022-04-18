@@ -1,5 +1,5 @@
 public class MockDictionary {
-    public boolean isWord(String str){
+    public static boolean isWord(String str){
         return true;
     }
 }

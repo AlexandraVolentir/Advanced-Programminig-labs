@@ -32,15 +32,19 @@ public class Player {
         for (Tile tile : extracted) {
             word.append(tile.getLetter());
         }
-        game.getBoard().addWord(this, word.toString());
-        System.out.println("player: " + getName() + "SUBMITED A WORD: " + word.toString());
-        // make the player sleep 50 ms
-        try {
-            Thread.sleep(50);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+
+        if(MockDictionary.isWord(word.toString())){
+            game.getBoard().addWord(this, word.toString());
+            System.out.println("player: " + getName() + "SUBMITED A WORD: " + word.toString());
+            // make the player sleep 50 ms
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return true;
         }
-        return true;
+        return false;
     }
 
     public void run(){
