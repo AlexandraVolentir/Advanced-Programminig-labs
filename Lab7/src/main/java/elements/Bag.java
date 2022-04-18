@@ -7,13 +7,19 @@ import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * class that stores all the tiles in a HashMap and
+ * is capable of initializing the tiles
+ */
 public class Bag {
     private Map<Tile, Integer> bagOfTiles;
-//    private Map<Character, Integer> tileNameToValue = new HashMap<>();
     private int numberOfTiles = 0;
     private static final int TILES_PER_LETTER = 10;
 
-
+    /**
+     * constructor for the bag
+     * it initializes tiles
+     */
     public Bag() {
         bagOfTiles = new ConcurrentHashMap<>();
         File f = new File("board.txt");
@@ -22,7 +28,6 @@ public class Bag {
             in = new Scanner(f);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            System.out.println(" AICI 2");
         }
         while (in.hasNext()) {
             String[] words = in.nextLine().split(" ");
@@ -52,20 +57,21 @@ public class Bag {
         }
 //        System.out.println("HERE IS THE BAG OF TILES" + bagOfTiles);
 //        System.out.println(numberOfTiles);
-
-//        for (Map.Entry<elements.Tile, Integer> entry : bagOfTiles.entrySet()) {
-//            elements.Tile key = entry.getKey();
-//            Integer value = entry.getValue();
-//            numberOfTiles += value;
-//            tileNameToValue.put(key.getLetter(), value);
-//        }
     }
 
+    /**
+     * constructor which takes as parameter the map with the tiles
+     * @param bagOfTiles the bag of tiles
+     */
     public Bag(Map<Tile, Integer> bagOfTiles){
         this.bagOfTiles = new ConcurrentHashMap<>(bagOfTiles);
         numberOfTiles = bagOfTiles.size();
     }
 
+    /**
+     * tile initializer
+     * @return returns the map with tiles
+     */
     static Map<Tile, Integer> initializeBagOfTiles(){
         Map<Tile, Integer> bagOfTiles = new ConcurrentHashMap<>();
         File f = new File("board.txt");
@@ -88,10 +94,18 @@ public class Bag {
         return bagOfTiles;
     }
 
+    /**
+     * getter for the bag of tiles
+     * @return the baf of tiles
+     */
     public Map<Tile, Integer> getBagOfTiles() {
         return bagOfTiles;
     }
 
+    /**
+     * setter for the bag of tiles
+     * @param bagOfTiles returns the set of tiles
+     */
     public void setBagOfTiles(Map<Tile, Integer> bagOfTiles) {
         this.bagOfTiles = bagOfTiles;
     }
@@ -108,14 +122,12 @@ public class Bag {
         return (int) ((Math.random() * (max - min)) + min);
     }
 
-//    public Map<Character, Integer> getTileNameToValue() {
-//        return tileNameToValue;
-//    }
-//
-//    public void setTileNameToValue(Map<Character, Integer> tileNameToValue) {
-//        this.tileNameToValue = tileNameToValue;
-//    }
-
+    /**
+     * check if the character is present in the bag
+     * traverses the map and checks whether the tile is present and its quantity is not 0
+     * @param character the character we are looking for
+     * @return the found tile, otherwise, we return the null tile
+     */
     public Tile checkForCharacterInBag(char character) {
         if (numberOfTiles == 0) {
             return null;
@@ -129,6 +141,11 @@ public class Bag {
         return null;
     }
 
+    /**
+     * functions that extract the tiles
+     * @param howMany how many tiles should be extracted
+     * @return the list with the extracted tiles
+     */
     public synchronized List<Tile> extractTiles(int howMany) {
         List<Tile> extracted = new ArrayList<>();
         if (bagOfTiles.isEmpty()) {
