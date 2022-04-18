@@ -38,7 +38,7 @@ public class Game {
     }
 
     public void play(){
-//        DaemonThread t1 = new DaemonThread("t1");
+//        utilities.Dictionary.DaemonThread t1 = new utilities.Dictionary.DaemonThread("t1");
 //        t1.setDaemon(true);
 //        t1.start();
         for(Player player : players){
@@ -92,6 +92,8 @@ public class Game {
 
     static void homework(){
         utilities.Dictionary dictionary = new Dictionary(1000);
+        System.out.println("Words with given prefix");
+        dictionary.lookup("E");
         Game game = new Game();
         game.addPlayer(new Player("player.Player 1"));
         game.addPlayer(new Player("player.Player 2"));
